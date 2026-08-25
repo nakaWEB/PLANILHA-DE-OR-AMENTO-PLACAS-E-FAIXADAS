@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botões de Temas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: #1e293b;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .temas-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 900px;
+        }
+
+        .tema-btn {
+            border: 3px solid transparent;
+            border-radius: 12px;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-width: 140px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tema-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .tema-btn.ativo {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px #93c5fd;
+        }
+
+        .tema-cores {
+            display: flex;
+            gap: 4px;
+        }
+
+        .tema-cor {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .tema-nome {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <h1>🎨 Selecione um Tema</h1>
+    <div class="temas-grid" id="temasGrid"></div>
+
+    <script>
+        const temas = {
+            azul:      { nome: 'Azul Clássico',   cores: ['#3b82f6', '#60a5fa', '#93c5fd', '#1d4ed8'] },
+            vermelho:  { nome: 'Vermelho Fogo',   cores: ['#ef4444', '#f87171', '#fca5a5', '#b91c1c'] },
+            verde:     { nome: 'Verde Natureza',  cores: ['#22c55e', '#4ade80', '#86efac', '#15803d'] },
+            roxo:      { nome: 'Roxo Real',       cores: ['#8b5cf6', '#a78bfa', '#c4b5fd', '#6d28d9'] },
+            laranja:   { nome: 'Laranja Energia', cores: ['#f97316', '#fb923c', '#fdba74', '#c2410c'] },
+            rosa:      { nome: 'Rosa Doce',       cores: ['#ec4899', '#f472b6', '#fbcfe8', '#be185d'] },
+            turquesa:  { nome: 'Turquesa Oceano', cores: ['#14b8a6', '#2dd4bf', '#99f6e4', '#0f766e'] },
+            amarelo:   { nome: 'Amarelo Sol',     cores: ['#eab308', '#facc15', '#fef08a', '#a16207'] },
+            indigo:    { nome: 'Índigo Profundo', cores: ['#6366f1', '#818cf8', '#c7d2fe', '#4338ca'] },
+            cinza:     { nome: 'Cinza Moderno',   cores: ['#64748b', '#94a3b8', '#cbd5e1', '#334155'] },
+            escuro:    { nome: 'Modo Escuro',     cores: ['#60a5fa', '#93c5fd', '#bfdbfe', '#3b82f6'] },
+            neon:      { nome: 'Neon Cyber',      cores: ['#00ff88', '#00cc6a', '#99ffcc', '#00994d'] }
+        };
+
+        function criarBotoes() {
+            const container = document.getElementById('temasGrid');
+
+            for (const [key, tema] of Object.entries(temas)) {
+                const btn = document.createElement('button');
+                btn.className = 'tema-btn';
+                btn.dataset.tema = key;
+
+                const coresHtml = tema.cores.map(cor => 
+                    `<div class="tema-cor" style="background: ${cor}"></div>`
+                ).join('');
+
+                btn.innerHTML = `
+                    <div class="tema-cores">${coresHtml}</div>
+                    <span class="tema-nome">${tema.nome}</span>
+                `;
+
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.tema-btn').forEach(b => b.classList.remove('ativo'));
+                    this.classList.add('ativo');
+                    console.log('Tema selecionado:', key);
+                });
+
+                container.appendChild(btn);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', criarBotoes);
+    </script>
+
+</body>
+</html>

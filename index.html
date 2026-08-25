@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/menu.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/block-scrol.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/footer.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/tema.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/fundo.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/planilha z-univerçal.css">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="./imagens/favicon.ico">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!--FONTES-->
+</head>
+
+<body>
+    <img class="imgfundo" src="./imagens/plano de fundo folha.png" alt="">
+
+    <div class="sidebar">
+        <!-- Logo -->
+        <div class="logo-area">
+            <img class="logo" src="./imagens/LOGO SEM FUNDO.png" alt="">
+
+            <div class="empresa">
+                <h2>AS INFORMÁTICA</h2>
+                <span>ORÇAMENTOS</span>
+            </div>
+        </div>
+
+        <!-- Menu -->
+        <ul class="menu">
+
+            <!-- ORÇAMENTOS ATENDIMENTO -->
+            <li class="menu-item">
+
+                <div class="menu-title">
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                    <span>ORÇAMENTOS ATENDIMENTO</span>
+                    <i class="fa-solid fa-chevron-down seta"></i>
+                </div>
+
+                <div class="submenu">
+                    <a href="./1-planilha atendimento.html"> <i class="fa-solid fa-circle"
+                            style="font-size: 5px; color: rgb(0, 255, 0);"></i>ATENDIMENTO</a>
+                </div>
+
+            </li>
+            <!-- ORÇAMENTOS RAPIDOS -->
+            <li class="menu-item">
+                <div class="menu-title">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>ORÇAMENTOS RAPIDOS</span>
+                    <!-- <i class="fa-solid fa-triangle-exclamation" style="color: rgb(255, 238, 0);"></i> -->
+                    <i class="fa-solid fa-chevron-down seta"></i>
+                </div>
+
+                <div class="submenu">
+                    <a href="./2-planilha a base de lona.html"><i class="fa-solid fa-circle"
+                            style="font-size: 5px; color: rgb(0, 255, 0);"></i>Produtos a base de lona</a>
+                    <a href="./2-planilha adesivo.html"><i class="fa-solid fa-circle"
+                            style="font-size: 5px; color: rgb(0, 255, 0);"></i>Adesivos</a>
+                </div>
+            </li>
+
+            <!-- ORÇAMENTOS COMUNICAÇÃO VISUAL -->
+            <li class="menu-item">
+                <div class="menu-title">
+                    <i class="fa-solid fa-sign"></i>
+                    <span>COMUNICAÇÃO VISUAL</span>
+                    <i class="fa-solid fa-triangle-exclamation" style="color: rgba(255, 238, 0, 0);"></i>
+                    <i class="fa-solid fa-chevron-down seta"></i>
+                </div>
+
+                <div class="submenu">
+                    <a href="./3-planilha placas e fachada.html"> <i class="fa-solid fa-circle"
+                            style="font-size: 5px; color: rgb(0, 255, 0);"></i>PLACAS E FACHADAS</a>
+                    <a href="./3-planilha placa acm.html"><i class="fa-solid fa-circle"
+                            style="font-size: 5px; color: rgb(0, 255, 0);"></i>PLACA ACM</a>
+                    <a href="./3-planilha placa lona.html"><i class="fa-solid fa-circle"
+                            style="font-size: 5px; color: rgb(0, 255, 0);"></i>PLACA LONA</a>
+                    <a href="./3-planilha placa aco galvanizado adesivado.html"><i class="fa-solid fa-circle"
+                            style="font-size: 5px; color: rgb(0, 255, 0);"></i>PLACA AÇO GALVANIZADO ADESIVADA</a>
+                    <a href="./3-planilha toldo.html"><i class="fa-solid fa-circle"
+                            style="font-size: 5px; color: rgb(0, 255, 0);"></i>TOLDOS</a>
+                </div>
+            </li>
+
+            <!-- ATALHOS -->
+            <li class="menu-item">
+                <div class="menu-title">
+                    <i class="fa-solid fa-keyboard"></i>
+                    <span>ATALHOS</span>
+                    <i class="fa-solid fa-chevron-down seta"></i>
+                </div>
+
+                <div class="submenu">
+                    <a>Ctrl + s = Salvar</a>
+                    <a>Ctrl + p = Imprimir</a>
+                    <a>Win + Shift + S = capturar área especifica</a>
+                </div>
+            </li>
+        </ul>
+
+        <div class="theme-switch">
+            <button id="toggleTheme">
+                <i class="fa-solid fa-moon"></i>
+                <span>MODO CLARO</span>
+            </button>
+        </div>
+
+    </div>
+    <footer id="contact">
+        <p class="versao">AS INFORMATICA &copy; 2015-2026 <br>
+            Planilha de Orçamentos v3.0 (beta)</p>
+    </footer>
+
+    <!--ABA EXPANCIVA MENU-->
+    <script>
+
+        document.querySelectorAll('.menu-title').forEach(menu => {
+
+            menu.addEventListener('click', () => {
+
+                const item = menu.parentElement;
+
+                document.querySelectorAll('.menu-item').forEach(outro => {
+                    if (outro !== item) {
+                        outro.classList.remove('open');
+                    }
+                });
+
+                item.classList.toggle('open');
+
+            });
+
+        });
+    </script>
+
+    <!--TEMA-->
+
+    <script>const btn = document.getElementById("toggleTheme");
+
+        btn.addEventListener("click", () => {
+
+            document.body.classList.toggle("light-mode");
+
+            const icon = btn.querySelector("i");
+            const text = btn.querySelector("span");
+
+            if (document.body.classList.contains("light-mode")) {
+
+                icon.className = "fa-solid fa-sun";
+                text.textContent = "Modo Escuro";
+
+                localStorage.setItem("theme", "light");
+
+            } else {
+
+                icon.className = "fa-solid fa-moon";
+                text.textContent = "Modo Claro";
+
+                localStorage.setItem("theme", "dark");
+
+            }
+
+        });
+
+        /* Salva a escolha */
+
+        if (localStorage.getItem("theme") === "light") {
+
+            document.body.classList.add("light-mode");
+
+            btn.querySelector("i").className = "fa-solid fa-sun";
+            btn.querySelector("span").textContent = "Modo Escuro";
+        }</script>
+
+</body>
+
+</html>

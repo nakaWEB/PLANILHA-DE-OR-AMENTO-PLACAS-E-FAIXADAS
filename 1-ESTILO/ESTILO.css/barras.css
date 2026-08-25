@@ -1,0 +1,225 @@
+        :root {
+            --barra:  rgba(255, 255, 255, 0.315);
+        }
+
+        .Gerenciar-Produtos {
+            position: absolute;
+            left: 2%;
+        }
+
+        .github-info {
+            background: rgba(0, 56, 112, 0.9);
+            color: rgb(255, 255, 255);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 1002;
+            backdrop-filter: blur(10px);
+            animation: githubInfo 4s linear;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+               /* >.< BARRA INFERIOR*/
+        .barra-inferior {
+            position: fixed;
+            left: 100%;
+            top: 100%;
+            transform: translate(-100%, -100%);
+
+            bottom: 0;
+            width: 80%;
+            height: 10%;
+            background: rgba(255, 255, 255, 0.233);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 10px;
+            z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2px);
+        }
+
+        .barra-inferior button {
+            background: rgba(83, 83, 83, 0.089);
+            color: rgb(0, 0, 0);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 3px 12px;
+            margin: 2px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .barra-inferior button:hover {
+            color: #fff;
+            background: rgba(0, 0, 0, 0.548);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .barra-inferior button.ativo {
+            background: #cececeaf;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.39);
+        }
+
+                /* >.< NOTIFICAÇÕES DE VALORES*/
+        /* Flutuante REBITES */
+        :root {
+            --top: 4%;
+            --largura: 90px;
+            --autura: 45px;
+            --titulo: 9px;
+            --valor: 9px;
+            --info: rgba(255, 255, 255, 0.281);
+            --balanceador: 10px;;
+        }
+
+        .rebites-box {
+            display: none;
+            position: fixed;
+            top: var(--top);
+            transform: translate(-50%, -50%);
+            right: 130px;
+            width: var(--largura);
+            height: var(--autura);
+            background: var(--info);
+            color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-family: 'Segoe UI', sans-serif;
+            z-index: 9999;
+            text-align: center;
+            padding: var(--balanceador);
+        }
+
+        .rebites-titulo {
+                color: black;
+            font-weight: bold;
+            font-size: var(--titulo);
+        }
+
+        .rebites-valor {
+                color: black;
+            font-size: var(--valor);
+            font-weight: bold;
+        }
+
+        /* Flutuante ELETRODOS */
+        .eletrodos-box {
+            display: none;
+            position: fixed;
+            top: var(--top);
+            transform: translate(-50%, -50%);
+            right: 30px;
+            width: var(--largura);
+            height: var(--autura);
+            background: var(--info);
+            color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-family: 'Segoe UI', sans-serif;
+            z-index: 9999;
+            min-width: 50px;
+            text-align: center;
+            padding: var(--balanceador);
+        }
+
+        .eletrodos-titulo {
+                color: black;
+            font-weight: bold;
+            font-size: var(--titulo);
+        }
+
+        .eletrodos-valor {
+                color: black;
+            font-size: var(--valor);
+            font-weight: bold;
+        }
+
+        /*tempode produção estrada flutuante*/
+        .tempo-pp-box {
+            display: none;
+            position: fixed;
+            top: var(--top);
+            transform: translate(-50%, -50%);
+            right: 30px;
+            width: var(--largura);
+            height: var(--autura);
+            background: var(--info);
+            color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-family: 'Segoe UI', sans-serif;
+            z-index: 9999;
+            min-width: 50px;
+            text-align: center;
+            padding: var(--balanceador);
+        }
+
+        .tempo-pp-titulo {
+                color: black;
+            font-weight: bold;
+            font-size: var(--titulo);
+        }
+
+        .tempo-pp-valor {
+                color: black; 
+            font-size: var(--valor);
+            font-weight: bold;
+        }
+
+        /*info cliente flutuante*/
+        .info-cliente-box {
+            display: none;
+            position: fixed;
+            top: var(--top);
+            transform: translate(-50%, -50%);
+            right: 30px;
+            width: var(--largura);
+            height: var(--autura);
+            background: var(--info);
+            color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            font-family: 'Segoe UI', sans-serif;
+            z-index: 9999;
+            min-width: 50px;
+            text-align: center;
+            padding: var(--balanceador);
+        }
+
+        .info-cliente-titulo {
+                color: black;
+            font-weight: bold;
+            font-size: var(--titulo);
+        }
+
+        .info-cliente-valor {
+            color: black;
+            font-size: var(--valor);
+            font-weight: bold;
+        }
+
+        .logo {
+            font-size: 16px;
+            font-weight: bold;
+            color: #00d4ff;
+            text-decoration: none;
+            letter-spacing: 2px;
+
+        }

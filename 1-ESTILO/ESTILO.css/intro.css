@@ -1,0 +1,233 @@
+        /* ============================================
+           ANIMAÇÃO DE INTRODUÇÃO
+           ============================================ */
+        .intro-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000000000000;
+            animation: fadeOutIntro 1s ease-in-out 4s forwards;
+            pointer-events: none;
+        }
+
+        @keyframes fadeOutIntro {
+            0% { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        /* Ícone de Planilha 3D */
+        .spreadsheet-icon {
+            width: 120px;
+            height: 150px;
+            background: linear-gradient(145deg, #ffffff 0%, #e6e6e6 100%);
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3), 
+                        inset 0 2px 4px rgba(255,255,255,0.8);
+            position: relative;
+            animation: scaleIn 0.8s ease-out 0.5s both,
+                       floatIcon 2s ease-in-out infinite 1.3s;
+            transform-style: preserve-3d;
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0) rotateY(-180deg); opacity: 0; }
+            100% { transform: scale(1) rotateY(0deg); opacity: 1; }
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px) rotateX(5deg); }
+            50% { transform: translateY(-15px) rotateX(5deg); }
+        }
+
+        /* Linhas da planilha sendo desenhadas */
+        .sheet-line {
+            position: absolute;
+            left: 15px;
+            height: 8px;
+            border-radius: 4px;
+            opacity: 0;
+            animation: drawLine 0.6s ease-out forwards;
+        }
+
+        .sheet-line:nth-child(1) { 
+            top: 25px; 
+            width: 0; 
+            animation-delay: 1.2s; 
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+        .sheet-line:nth-child(2) { 
+            top: 45px; 
+            width: 0; 
+            animation-delay: 1.4s; 
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        }
+        .sheet-line:nth-child(3) { 
+            top: 65px; 
+            width: 0; 
+            animation-delay: 1.6s; 
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+        .sheet-line:nth-child(4) { 
+            top: 85px; 
+            width: 0; 
+            animation-delay: 1.8s; 
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .sheet-line:nth-child(5) { 
+            top: 105px; 
+            width: 0; 
+            animation-delay: 2.0s; 
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        @keyframes drawLine {
+            0% { width: 0; opacity: 0; }
+            100% { width: 75%; opacity: 1; }
+        }
+
+        /* Células de dados coloridas */
+        .data-cell {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            right: 15px;
+            opacity: 0;
+            animation: popIn 0.4s ease-out forwards;
+        }
+
+        .data-cell:nth-child(6) { 
+            top: 20px; 
+            background: #48bb78; 
+            animation-delay: 2.2s;
+        }
+        .data-cell:nth-child(7) { 
+            top: 60px; 
+            background: #ed8936; 
+            animation-delay: 2.4s;
+        }
+        .data-cell:nth-child(8) { 
+            top: 100px; 
+            background: #e53e3e; 
+            animation-delay: 2.6s;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0) rotate(-180deg); opacity: 0; }
+            70% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        /* Títulos animados */
+        .intro-title {
+            margin-top: 40px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease-out 2.8s forwards;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .intro-subtitle {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #a0aec0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease-out 3s forwards;
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Partículas de fundo */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(100px); opacity: 0; }
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 1s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 3s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 2.5s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 1.5s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 4.5s; }
+        .particle:nth-child(10) { left: 5%; animation-delay: 3.5s; }
+
+        /* Efeito de brilho */
+        .glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(102,126,234,0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.5); opacity: 0.8; }
+        }
+
+        /* Barra de progresso */
+        .progress-bar {
+            position: absolute;
+            bottom: 100px;
+            width: 300px;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 3.2s forwards;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            animation: fillProgress 1.5s ease-out 3.2s forwards;
+        }
+
+        @keyframes fillProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }

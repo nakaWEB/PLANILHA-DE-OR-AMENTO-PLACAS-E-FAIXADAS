@@ -1,0 +1,10 @@
+body.light-mode .sidebar {
+        background:linear-gradient(
+        135deg,
+        #dcecff 0%,
+        #87b7ff 50%,
+        #4f95ff 100%
+    );
+
+    color:#000000;
+}

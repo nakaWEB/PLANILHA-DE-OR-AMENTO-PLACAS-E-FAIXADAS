@@ -1,0 +1,45 @@
+    "TOLDO CAPOTA": {
+        "LONA": [
+{ codigo: "xvc", idX3D: "", nome: "LONA COBERTURA", preco: 80, unidade: "M2", formula: "C * A * Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "LONA LATERAL", preco: 80, unidade: "M2", formula: "C * A * Q * $" },
+        ],
+
+        "MAQUINA": [
+        ],
+
+        "ESTRUTURA METALICA": [
+{ codigo: "xvc", idX3D: "", nome: "ELETRODO 2,5", preco: 1.3, unidade: "UNID", formula: "Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "METALON RETO	SUPERIOR E INFERIOR", preco: 15, unidade: "M", formula: "C * Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "METALON RETO	LATERAL", preco: 15, unidade: "M", formula: "((C + A )* Q * $") },
+{ codigo: "xvc", idX3D: "", nome: "METALON 	CURVA", preco: 20, unidade: "M", formula: "C * Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "BARRA CHATA LISA 1/8X1/2'", preco: 5, unidade: "M", formula: "C * Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "DISCO DE CORTE 14'", preco: 45, unidade: "UNID", formula: "Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "SUPORTE FIXAÇÃO", preco: 5, unidade: "UNID", formula: "Q * $" },
+        ],
+
+        "FIXAÇÃO": [
+{ codigo: "xvc", idX3D: "", nome: "REBITE", preco: 0,1, unidade: "UNID", formula: "Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "FITA DUPLA FACE 9MM", preco: 6, unidade: "M", formula: "Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "PARAFUSO/BUCHA", preco: 1.5, unidade: "UNID", formula: "Q * $" },
+        ],
+
+        "PINTURA E ADESIVO": [
+{ codigo: "xvc", idX3D: "", nome: "PRIMER AUTOMOTIVO", preco: 40, unidade: "LT", formula: "Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "LIXA 80/150/320", preco: 3, unidade: "UNID", formula: "Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "TINTA", preco: 70, unidade: "LT", formula: "Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "TINTA SPLAY", preco: 12, unidade: "LT", formula: "Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "GALVIT", preco: 70, unidade: "LT", formula: "Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "VERNIZ", preco: 70, unidade: "LT", formula: "Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "SELADOR MADEIRA", preco: 40, unidade: "LT", formula: "Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "GASOLINA P/LIMPESA", preco: 8, unidade: "LT", formula: "Q * $" },
+{ codigo: "xvc", idX3D: "", nome: "THINER", preco: 22, unidade: "LT", formula: "Q * $" },
+        ],
+
+        "MÃO DE OBRA": [
+            { codigo: "xvc", idX3D: "", nome: "TEMPO ATENDIMENTO", preco: 25, formula: "Q * $", unidade: "H" },
+            { codigo: "xvc", idX3D: "", nome: "TEMPO PRODUÇAO", preco: 25, formula: "Q * $", unidade: "H" },
+            { codigo: "xvc", idX3D: "", nome: "TEMPO DE INSTALAÇÃO", preco: 25, formula: "Q * $", unidade: "H" },
+            { codigo: "xvc", idX3D: "", nome: "ALMOÇO/LANCHE", preco: 40, formula: "Q * $", unidade: "UND" },
+            { codigo: "xvc", idX3D: "", nome: "FRETE", preco: 1.50, formula: "Q * $ * 2", unidade: "KM" },
+        ]
+    },

@@ -1,0 +1,425 @@
+let catalogoProdutos = {
+    "ESTRUTURA METALICA": {
+        "FERRAGEM": [
+        { codigo: "5992", idX3D: "2600878", nome: "ELETRODO 2,5 5KG 266 UNID", preco: 1.3, formula: "Q * $", unidade: "UNID" },
+        { codigo: "19772", idX3D: "26013907", nome: "SOLDA BARRA", preco: 18, formula: "Q * $", unidade: "UNID" },
+
+        { codigo: "32435", idX3D: "26013871", nome: "ESTRUTURA METÁLICA 100X40", preco: 150, formula: "C * Q * $", unidade: "M" },
+        { codigo: "25652", idX3D: "2601023", nome: "ESTRUTURA METÁLICA 15X15", preco: 15, formula: "(A + C) * 2 * $ * Q", unidade: "PRE" },
+        { codigo: "40524", idX3D: "426", nome: "ESTRUTURA METÁLICA 20X20", preco: 15, formula: "(A + C) * 2 * $ * Q", unidade: "PRE" },
+        { codigo: "28618", idX3D: "2601209", nome: "ESTRUTURA METÁLICA 20X40", preco: 15, formula: "(A + C) * 2 * $ * Q", unidade: "PRE" },
+        { codigo: "46684", idX3D: "26013865", nome: "ESTRUTURA METÁLICA 25X25", preco: 15, formula: "(A + C) * 2 * $ * Q", unidade: "PRE" },
+        { codigo: "1279", idX3D: "26013866", nome: "ESTRUTURA METÁLICA 30X30", preco: 78, formula: "(A + C) * 2 * $ * Q", unidade: "PRE" },
+        { codigo: "42209", idX3D: "26013867", nome: "ESTRUTURA METÁLICA 30X50 GALV", preco: 15, formula: "(A + C) * 2 * $ * Q", unidade: "M" },
+        { codigo: "20839", idX3D: "765", nome: "ESTRUTURA METÁLICA 40X40", preco: 48, formula: "(A + C) * 2 * $ * Q", unidade: "PRE" },
+        { codigo: "83516", idX3D: "2601158", nome: "ESTRUTURA METÁLICA 50X50", preco: 48, formula: "(A + C) * 2 * $ * Q", unidade: "PRE" },
+
+        { codigo: "50795", idX3D: "26013872", nome: "ESTRUTURA METÁLICA CANALETA 100X40", preco: 132, formula: "C * Q * $", unidade: "M" },
+
+        { codigo: "87182", idX3D: "26013868", nome: "ESTRUTURA METÁLICA REDONDA 15X15", preco: 30, formula: "C * Q * $", unidade: "M" },
+        { codigo: "26891", idX3D: "26013869", nome: "ESTRUTURA METÁLICA REDONDA 20X20", preco: 35, formula: "C * Q * $", unidade: "M" },
+        { codigo: "61927", idX3D: "26013870", nome: "ESTRUTURA METÁLICA REDONDA 40X40", preco: 48, formula: "C * $ * Q", unidade: "M" },
+
+        { codigo: "75911", idX3D: "26013882", nome: "PEDAÇO METÁLICA 100X40", preco: 150, formula: "C * Q * $", unidade: "M" },
+        { codigo: "74354", idX3D: "26013873", nome: "PEDAÇO METÁLICA 15X15", preco: 15, formula: "C * Q * $", unidade: "M" },
+        { codigo: "52372", idX3D: "26013874", nome: "PEDAÇO METÁLICA 20X20", preco: 15, formula: "C * Q * $", unidade: "M" },
+        { codigo: "68733", idX3D: "26013879", nome: "PEDAÇO METÁLICA 20X40", preco: 15, formula: "C * $ * Q", unidade: "M" },
+        { codigo: "24177", idX3D: "26013875", nome: "PEDAÇO METÁLICA 25X25", preco: 15, formula: "C * Q * $", unidade: "M" },
+        { codigo: "22439", idX3D: "26013876", nome: "PEDAÇO METÁLICA 30X30", preco: 78, formula: "C * Q * $", unidade: "M" },
+        { codigo: "13462", idX3D: "26013880", nome: "PEDAÇO METÁLICA 30X50 GALV", preco: 40, formula: "C * Q * $", unidade: "M" },
+        { codigo: "1131", idX3D: "26013877", nome: "PEDAÇO METÁLICA 40X40", preco: 48, formula: "C * $ * Q", unidade: "M" },
+        { codigo: "892", idX3D: "26013878", nome: "PEDAÇO METÁLICA 50X50", preco: 48, formula: "C * $ * Q", unidade: "M" },
+
+        { codigo: "747", idX3D: "26013883", nome: "PEDAÇO METÁLICA CANALETA 100X40", preco: 132, formula: "C * Q * $", unidade: "M" },
+
+        { codigo: "5682", idX3D: "43339", nome: "PERFIL ENRIGECIDO 75 MM", preco: 39, formula: "C * Q * $", unidade: "M" },
+
+        { codigo: "54955", idX3D: "26013892", nome: "VERGALHÃO 3/8", preco: 12, formula: "C * Q * $", unidade: "UNID" },
+        { codigo: "60251", idX3D: "43848", nome: "VERGALHÃO 5/16", preco: 9, formula: "C * Q * $", unidade: "UNID" },
+
+        { codigo: "77466", idX3D: "2600876", nome: "SUPORTE", preco: 5, formula: "Q * $", unidade: "UNID" },
+        ],
+
+        "DISCOS": [
+        { codigo: "64841", idX3D: "2601024", nome: "DISCO ABRASIVO DESBASTE 7'", preco: 22, formula: "Q * $", unidade: "UNID" },
+        { codigo: "16985", idX3D: "2601000", nome: "DISCO CORTE 1,6 - 4 1/2'", preco: 6, formula: "Q * $", unidade: "UNID" },
+        { codigo: "19642", idX3D: "2601096", nome: "DISCO CORTE 14'", preco: 30, formula: "Q * $", unidade: "UNID" },
+        { codigo: "9964", idX3D: "2601002", nome: "DISCO CORTE 2.5 -  4 1/2'", preco: 6, formula: "Q * $", unidade: "UNID" },
+        { codigo: "90961", idX3D: "2601004", nome: "DISCO DE CORTE 7'", preco: 6, formula: "Q * $", unidade: "UNID" },
+        { codigo: "13618", idX3D: "2600967", nome: "DISCO DESBASTE LIXADEIRA 4 1/2'", preco: 10.6, formula: "Q * $", unidade: "UNID" },
+        { codigo: "31854", idX3D: "2601003", nome: "DISCO FLAP 4 1/2", preco: 6, formula: "Q * $", unidade: "UNID" },
+        ],
+
+        "REBITES E AUTOBROCANTES": [
+        { codigo: "71906", idX3D: "2600825", nome: "PARAFUSO AUTOBROCANTE 4X25(CABEÇA FLAGELADA)", preco: 0.3, formula: "Q * $", unidade: "UNID" },
+        { codigo: "57532", idX3D: "2601169", nome: "PARAFUSO AUTOBROCANTE 4X8 (CABEÇA FLAGELADA)", preco: 0.2, formula: "Q * $", unidade: "UNID" },
+        { codigo: "51293", idX3D: "2601148", nome: "REBITADOR PRO - STANLEY", preco: 92.5, formula: "Q * $", unidade: "UNID" },
+        { codigo: "96486", idX3D: "2600879", nome: "REBITE 4X10", preco: 0.3, formula: "Q * $", unidade: "UNID" },
+        { codigo: "69329", idX3D: "2601028", nome: "REBITE 4X8", preco: 0.15, formula: "Q * $", unidade: "UNID" },
+
+        ],
+
+        "PORCAS E BARRAS ROSCADAS": [
+        { codigo: "64713", idX3D: "26013888", nome: "BARRA ROSCADA 1/4 - 1M", preco: 8.5, formula: "Q * $", unidade: "UNID" },
+        { codigo: "80542", idX3D: "26013889", nome: "BARRA ROSCADA 3/16 - 1M", preco: 4, formula: "Q * $", unidade: "UNID" },
+        { codigo: "73549", idX3D: "26013890", nome: "BARRA ROSCADA 5/16 - 1M", preco: 12.5, formula: "Q * $", unidade: "UNID" },
+        { codigo: "73926", idX3D: "2601087", nome: "PORCA 1/4", preco: 0.3, formula: "Q * $", unidade: "UNID" },
+        { codigo: "61137", idX3D: "26013891", nome: "PORCA 3/16", preco: 0.2, formula: "Q * $", unidade: "UNID" },
+        { codigo: "67047", idX3D: "201088", nome: "PORCA 5/16", preco: 0.45, formula: "Q * $", unidade: "M" },
+
+        ],
+
+        "SERRAS E BROCAS": [
+        { codigo: "69827", idX3D: "43313", nome: "BROCA 2,50mm", preco: 6.5, formula: "Q * $", unidade: "UNID" },
+        { codigo: "46033", idX3D: "43286", nome: "BROCA 3 PONTAS 3mm", preco: 13, formula: "Q * $", unidade: "UNID" },
+        { codigo: "13515", idX3D: "43286", nome: "BROCA 3mm", preco: 13, formula: "Q * $", unidade: "UNID" },
+        { codigo: "8139", idX3D: "2601151", nome: "BROCA 4,5mm", preco: 8.6, formula: "Q * $", unidade: "UNID" },
+        { codigo: "2711", idX3D: "2601168", nome: "BROCA 6X110mm ENCAIXE RÁPIDO", preco: 25, formula: "Q * $", unidade: "UNID" },
+        { codigo: "93507", idX3D: "2600940", nome: "BROCA 8mm ENCAIXE RÁPIDO", preco: 0, formula: "Q * $", unidade: "UNID" }, " valor a verificar
+        { codigo: "28865", idX3D: "26013825", nome: "BROCA PARA METAL", preco: 10, formula: "Q * $", unidade: "UNID" },
+        { codigo: "11045", idX3D: "2601172", nome: "LIXADEIRA DEWALT", preco: 525, formula: "Q * $", unidade: "UNID" },
+        { codigo: "23953", idX3D: "2601147", nome: "SERRA COPO DIAMANTADA", preco: 199, formula: "Q * $", unidade: "UNID" },
+
+        ],
+
+        "FERRAMENTAS": [
+        { codigo: "28136", idX3D: "43843", nome: "BITS PONTA DUPLA 50mm - 1/4'", preco: 6.4, formula: "Q * $", unidade: "UNID" },
+        { codigo: "50596", idX3D: "2601196", nome: "BITS PONTA DUPLA 65mm", preco: 26, formula: "Q * $", unidade: "UNID" },
+        { codigo: "80091", idX3D: "2601149", nome: "BIT MAKITA", preco: 8.5, formula: "Q * $", unidade: "UNID" },
+        { codigo: "20342", idX3D: "26013836", nome: "BIT DEWALT", preco: 8, formula: "Q * $", unidade: "UNID" },
+
+        { codigo: "7276", idX3D: "2601151", nome: "CHAVE DE FENDA", preco: 20.7, formula: "Q * $", unidade: "UNID" },
+        { codigo: "77874", idX3D: "2601152", nome: "CHAVE DE PHILLIPS", preco: 20.7, formula: "Q * $", unidade: "UNID" },
+        { codigo: "34682", idX3D: "43334", nome: "CHAVE PARA MANDRIL", preco: 12, formula: "Q * $", unidade: "UNID" },
+
+        { codigo: "34139", idX3D: "43323", nome: "DESENGRIPANTE WURTH", preco: 29, formula: "Q * $", unidade: "UNID" },
+        { codigo: "89888", idX3D: "2601095", nome: "LIMPA CONTATO", preco: 31, formula: "Q * $", unidade: "UNID" },
+
+        { codigo: "72015", idX3D: "43322", nome: "ESCOVA CIRCULAR", preco: 16, formula: "Q * $", unidade: "UNID" },
+        { codigo: "77103", idX3D: "26013910", nome: "ESCOVA CIRCULAR 115MM", preco: 45, formula: "Q * $", unidade: "UNID" },
+        { codigo: "45004", idX3D: "2601171", nome: "FURADEIRA IMPACTO BOSCH", preco: 469, formula: "Q * $", unidade: "UNID" },
+        { codigo: "11045", idX3D: "2601172", nome: "LIXADEIRA DEWALT", preco: 525, formula: "Q * $", unidade: "UNID" },
+        { codigo: "67387", idX3D: "2601265", nome: "MANDRIL", preco: 60, formula: "Q * $", unidade: "UNID" },
+        { codigo: "69424", idX3D: "2601149", nome: "SOQUETE MAGNÉTICO 5/16mm SEXTAVADO", preco: 8.5, formula: "Q * $", unidade: "UNID" },
+        { codigo: "51293", idX3D: "2601148", nome: "REBITADOR PRO - STANLEY", preco: 92.5, formula: "Q * $", unidade: "UNID" },
+
+        { codigo: "21089", idX3D: "347", nome: "LÂMINA ESTILETE", preco: 0.7, formula: "Q * $", unidade: "UNID" },
+
+        { codigo: "27827", idX3D: "43284", nome: "LUVA VINIFLEX", preco: 1.7, formula: "Q * $", unidade: "UNID" },
+        { codigo: "92929", idX3D: "2601165", nome: "ÓCULOS DE SEGURANÇA", preco: 10, formula: "Q * $", unidade: "UNID" },
+
+        ],
+
+        "PARAFUSOS E FIXADORES": [
+        { codigo: "1.3753", idX3D: "2600707", nome: "BOTÃO DE ACABAMENTO (ESCONDE PARAFUSO)", preco: 8.50, formula: "Q * $", unidade: "UNID" },
+        { codigo: "96826", idX3D: "43597", nome: "CORRENTE 4X19X16mm", preco: 19.8, formula: "C * Q * $", unidade: "M" },
+        { codigo: "99111", idX3D: "2600956", nome: "PARAFUSO 1/4 X 50", preco: 0.6, formula: "Q * $", unidade: "UNID" },
+        { codigo: "44598", idX3D: "2601047", nome: "PARAFUSO 1/4 X75", preco: 0.85, formula: "Q * $", unidade: "UNID" },
+        { codigo: "24652", idX3D: "2601206", nome: "PARAFUSO 1/4X60", preco: 1, formula: "Q * $", unidade: "UNID" },
+        { codigo: "71906", idX3D: "2600825", nome: "PARAFUSO AUTOBROCANTE 4X25(CABEÇA FLAGELADA)", preco: 0.3, formula: "Q * $", unidade: "UNID" },
+        { codigo: "57532", idX3D: "2601169", nome: "PARAFUSO AUTOBROCANTE 4X8 (CABEÇA FLAGELADA)", preco: 0.2, formula: "Q * $", unidade: "UNID" },
+        { codigo: "98698", idX3D: "2600956", nome: "PARAFUSO SEXTAVADO 1/4x50 SEM BUCHA 8/10", preco: 0.6, formula: "Q * $", unidade: "UNID" },
+        { codigo: "11512", idX3D: "2601047", nome: "PARAFUSO SEXTAVADO 1/4x75 SEM BUCHA 8/10", preco: 0.85, formula: "Q * $", unidade: "UNID" },
+
+        { codigo: "18365", idX3D: "843", nome: "BUCHA 6", preco: 0.5, formula: "Q * $", unidade: "UNID" },
+        { codigo: "18263", idX3D: "43503", nome: "BUCHA 10", preco: 1, formula: "Q * $", unidade: "UNID" },
+        { codigo: "22038", idX3D: "827", nome: "BUCHA 8", preco: 1, formula: "Q * $", unidade: "UNID" },
+
+        { codigo: "16602", idX3D: "2601097", nome: "PARABOLTE CHUMBADOR 1/4x65", preco: 8.5, formula: "Q * $", unidade: "UNID" },
+        { codigo: "50192", idX3D: "2601098", nome: "PARABOLTE CHUMBADOR 5/16X75", preco: 14.3, formula: "Q * $", unidade: "UNID" },
+
+        ],
+
+        "BARRAS E CANTONEIRAS": [
+        { codigo: "85521", idX3D: "43326", nome: "BARRA ACHATADA BRANCA 3FUROS 3/8X1/8", preco: 5, formula: "Q * $", unidade: "UNID" },
+        { codigo: "95264", idX3D: "2601219", nome: "BARRA CHATA 1'X1/8", preco: 15, formula: "Q * $", unidade: "M" },
+        { codigo: "69704", idX3D: "26013900", nome: "CANTONEIRA (BARRA DE FERRO V) 0,5POL X 1/8", preco: 12, formula: "C * Q * $", unidade: "UNID" },
+        { codigo: "93024", idX3D: "1417", nome: "CANTONEIRA DE ALUMÍNIO POLIDO 3/4 (PEDAÇO)", preco: 7.2, formula: "C * Q * $", unidade: "M" },
+        { codigo: "42734", idX3D: "1417", nome: "CANTONEIRA DE ALUMÍNIO POLID (PERÍMETRO)", preco: 7.2, formula: "(A + C) * 2 * $ * Q", unidade: "M²" },
+
+        ],
+    },
+
+    "LONAS E ADESIVOS": {
+        "ADESIVOS": [
+        { codigo: "1373", idX3D: "1319", nome: "MÁSCARA", preco: 26, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "53778", idX3D: "416", nome: "ADESIVO", preco: 85.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "64535", idX3D: "428", nome: "ADESIVO (FIBRA DE CARBONO)", preco: 110.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "76709", idX3D: "2601190", nome: "ADESIVO BLACKLIGHT", preco: 97.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "5585", idX3D: "", nome: "ADESIVO BRANCO COM TEXTURA", preco: 60.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "81871", idX3D: "2601354", nome: "ADESIVO CIMENTO QUEIMADO", preco: 60.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "93743", idX3D: "310", nome: "ADESIVO COLOR CORTE RETO", preco: 45.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "86203", idX3D: "356", nome: "ADESIVO COLUNA DE PORTA", preco: 200.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "8535", idX3D: "311", nome: "ADESIVO ESPELHADO", preco: 75.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "2494", idX3D: "803", nome: "ADESIVO FAIXA DE PORTA", preco: 25.00, formula: "C * Q * $", unidade: "M²" },
+        { codigo: "77768", idX3D: "1263", nome: "ADESIVO GOLD METÁLICO", preco: 110.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "35492", idX3D: "915", nome: "ADESIVO JATEADO", preco: 70.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "44045", idX3D: "2601355", nome: "ADESIVO MADEIRA", preco: 60.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "59098", idX3D: "", nome: "ADESIVO PERFURADO", preco: 85.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "80707", idX3D: "43567", nome: "ADESIVO PRATA METÁLICO", preco: 110.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "42428", idX3D: "43564", nome: "ADESIVO PROMO FAST", preco: 40.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "13587", idX3D: "312", nome: "ADESIVO REFLETIVO", preco: 120.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "74617", idX3D: "", nome: "ADESIVO REVESTWALL ARTÍSTICO", preco: 120.00, formula: "C * A * Q * $", unidade: "M²" },
+
+        ],
+
+        "FERRAMENTAS": [
+        { codigo: "35702", idX3D: "1404", nome: "ESPÁTULA", preco: 3.80, formula: "Q * $", unidade: "UNID" },
+        { codigo: "7435", idX3D: "2601264", nome: "ESPÁTULA AÇO", preco: 4.90, formula: "Q * $", unidade: "UNID" },
+
+        ],
+
+        "LONAS": [
+        { codigo: "69126", idX3D: "43176", nome: "LONA BLACKLIGHT", preco: 100, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "1037", idX3D: "819", nome: "LONA SEM IMPRESSÃO - CORTE RETO", preco: 45, formula: "C * A * Q * $", unidade: "M²" },
+
+        ],
+    },
+
+    "ACM FUNDO": {
+        "ACMs": [
+        { codigo: "91765", idX3D: "1445", nome: "ACM COR BRILHO FUNDO PLACA", preco: 200.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "59635", idX3D: "2600865", nome: "ACM DARK GREY", preco: 250.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "10026", idX3D: "2601049", nome: "ACM FUNDO FACHADA", preco: 350.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "93195", idX3D: "960", nome: "ACM MADEIRA", preco: 360.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "89677", idX3D: "26013829", nome: "ACM PRETO", preco: 250.00, formula: "C * A * Q * $", unidade: "M²" },
+
+        ],
+
+        "COLAS E FIXADORES": [
+        { codigo: "79587", idX3D: "43820", nome: "MANTA ISOLAMENTO", preco: 6.50, formula: "Q * $", unidade: "M" },
+        { codigo: "37363", idX3D: "43332", nome: "MASSA PLÁSTICA", preco: 20.00, formula: "Q * $", unidade: "M²" },
+        { codigo: "13151", idX3D: "2601008", nome: "SILICONE 180G", preco: 25.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "18531", idX3D: "2600880", nome: "SILICONE PRETO", preco: 25.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "22983", idX3D: "43745", nome: "PU40 SELANTE", preco: 30.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "29224", idX3D: "2600745", nome: "TEKBOND", preco: 35.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "79638", idX3D: "43627", nome: "VEDA CALHA", preco: 40.00, formula: "Q * $", unidade: "UNID" },
+
+        ],
+    },
+
+    "LETRAS": {
+        "ACM LETRAS": [
+        { codigo: "91765", idX3D: "1445", nome: "ACM LATERAL LETRA CAIXA", preco: 200.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "29375", idX3D: "1422", nome: "ACM LETRAS (ROUTER)", preco: 400.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "2681", idX3D: "1421", nome: "ACM LETRAS ESPELHADO, ESCOVADO", preco: 600.00, formula: "C * A * Q * $", unidade: "M²" },
+
+        ],
+
+        "PVC LETRAS": [
+        { codigo: "661", idX3D: "1258", nome: "PVC 6mm", preco: 170.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "14025", idX3D: "", nome: "PVC EXPANDIDO 10mm", preco: 500.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "4432", idX3D: "2601044", nome: "PVC EXPANDIDO 15mm", preco: 202.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "96359", idX3D: "26011323", nome: "PVC EXPANDIDO 20mm", preco: 235.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "49205", idX3D: "43296", nome: "PVC EXPANDIDO 25mm", preco: 270.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "1.6035", idX3D: "26013831", nome: "PVC EXPANDIDO 30mm", preco: 302.00, formula: "C * A * Q * $", unidade: "M²" },
+
+        ],
+
+        "ACRILICO LETRAS": [
+        { codigo: "30432", idX3D: "", nome: "DOBRA ACRÍLICO", preco: 0.70, formula: "Q * $", unidade: "DOBRA" },
+
+        { codigo: "0075", idX3D: "2600861", nome: "ACRÍLICO 2mm - CORTE LASER", preco: 400.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "68944", idX3D: "43345", nome: "ACRÍLICO 2mm ESPELHADO PRATA 2X1 (LASER)", preco: 600.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "52885", idX3D: "43333", nome: "ACRÍLICO 2mm ESPELHADO DOURADO 2X1 (LASER)", preco: 600.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "7181", idX3D: "2601285", nome: "ACRÍLICO 2mm ESPELHADO ROSE 2X1 (LASER)", preco: 600.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "13799", idX3D: "260113837", nome: "ACRÍLICO 3mm - CORTE LASER", preco: 450.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "22544", idX3D: "2601216", nome: "ACRÍLICO 4mm - CORTE LASER", preco: 500.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "64214", idX3D: "43821", nome: "ACRÍLICO 6mm - CORTE LASER", preco: 600.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "40506", idX3D: "2601229", nome: "ACRÍLICO AZUL 6mm - CORTE LASER", preco: 635.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "96889", idX3D: "26013851", nome: "ACRÍLICO 10mm - CORTE LASER", preco: 750.00, formula: "C * A * Q * $", unidade: "M²" },
+
+        { codigo: "89988", idX3D: "2601238", nome: "PS 2mm - CORTE LASER", preco: 100.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "71814", idX3D: "2600966", nome: "PS 3mm - CORTE LASER", preco: 150.00, formula: "C * A * Q * $", unidade: "M²" },
+
+        ],
+
+        "AÇO GALVANIZADO LETRAS": [
+        { codigo: "1122", idX3D: "43547", nome: "LETRA AÇO GALVANIZADO 2mx1m", preco: 1000, formula: "C * A * Q * $", unidade: "M²" },
+
+        ],
+
+        "MDF LETRA": [
+        { codigo: "55365", idX3D: "43060", nome: "MDF 10MM CRU CORTE ROUTER", preco: 200.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "5114", idX3D: "", nome: "MDF 15MM CRU CORTE ROUTER", preco: 250.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "54549", idX3D: "", nome: "MDF 18MM CRU CORTE ROUTER", preco: 170.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "71624", idX3D: "43057", nome: "MDF 3MM CRU CORTE LASER", preco: 150.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "12146", idX3D: "", nome: "MDF 6MM CRU CORTE LASER", preco: 170.00, formula: "C * A * Q * $", unidade: "M²" },
+
+        ],
+
+        "COLAS, FITAS E ATIVADORES": [
+        { codigo: "46039", idX3D: "43335", nome: "ATIVADOR DE TEKBOND", preco: 58.00, formula: "Q * $", unidade: "M²" },
+        { codigo: "9637", idX3D: "897", nome: "FITA DUPLA FACE 15mm", preco: 6.00, formula: "Q * $", unidade: "M²" },
+        { codigo: "21886", idX3D: "2600710", nome: "FITA DUPLA FACE 9mm", preco: 3.30, formula: "Q * $", unidade: "M²" },
+        { codigo: "65384", idX3D: "26013911", nome: "FITA DUPLA FACE CINZA 6mm", preco: 2.50, formula: "Q * $", unidade: "M" },
+        { codigo: "7586", idX3D: "2600970", nome: "PROMOTOR ADERENCIA - 7225", preco: 240.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "50599", idX3D: "2600971", nome: "GABARITO", preco: 10.00, formula: "C * A * Q * $", unidade: "M" },
+
+        ],
+
+        "PREGOS E PORCAS": [
+        { codigo: "14452", idX3D: "43294", nome: "PREGO DE TELHA", preco: 0.80, formula: "Q * $", unidade: "M" },
+        { codigo: "50348", idX3D: "827", nome: "BUCHA PARA PREGO", preco: 1.00, formula: "Q * $", unidade: "UNID" },
+
+        { codigo: "64713", idX3D: "26013888", nome: "BARRA ROSCADA 1/4 - 1M", preco: 8.5, formula: "Q * $", unidade: "UNID" },
+        { codigo: "80542", idX3D: "26013889", nome: "BARRA ROSCADA 3/16 - 1M", preco: 4, formula: "Q * $", unidade: "UNID" },
+        { codigo: "73549", idX3D: "26013890", nome: "BARRA ROSCADA 5/16 - 1M", preco: 12.5, formula: "Q * $", unidade: "UNID" },
+        { codigo: "73926", idX3D: "2601087", nome: "PORCA 1/4", preco: 0.3, formula: "Q * $", unidade: "UNID" },
+        { codigo: "61137", idX3D: "26013891", nome: "PORCA 3/16", preco: 0.2, formula: "Q * $", unidade: "UNID" },
+        { codigo: "67047", idX3D: "201088", nome: "PORCA 5/16", preco: 0.45, formula: "Q * $", unidade: "M" },
+
+        ],
+
+    },
+
+    "ILUMINAÇÃO": {
+        "FIOs EM GERAL": [
+        { codigo: "29929", idX3D: "", nome: "SOLDA DE ESTANHO (BRANCA)", preco: 12.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "34019", idX3D: "1284", nome: "FIO 2X0,5", preco: 2.00, formula: "Q * $", unidade: "M" },
+        { codigo: "45753", idX3D: "1348", nome: "FIO BICOLOR", preco: 2.00, formula: "Q * $", unidade: "M" },
+        { codigo: "29204", idX3D: "1284", nome: "FIO PARALELO 2X0,5", preco: 2.00, formula: "Q * $", unidade: "M" },
+        { codigo: "63983", idX3D: "668", nome: "FIO PARALELO 2X0,75", preco: 2.00, formula: "Q * $", unidade: "M" },
+        { codigo: "13791", idX3D: "2601082", nome: "FIO PARALELO PRETO", preco: 4.50, formula: "Q * $", unidade: "M" },
+        { codigo: "62056", idX3D: "43331", nome: "FIXA CABO", preco: 1.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "0707", idX3D: "26101305", nome: "PASSA FIO COM ALMA DE AÇO - 15 MT", preco: 15.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "91958", idX3D: "2601306", nome: "PASSA FIO COM ALMA DE AÇO - 20 MT", preco: 30.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "23365", idX3D: "2601195", nome: "QUADRO DE DISTRIBUIÇÃO", preco: 61.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "88472", idX3D: "2600983", nome: "FITA ISOLANTE", preco: 15.00, formula: "Q * $", unidade: "UNID" },
+
+        { codigo: "1", idX3D: "43842", nome: "PERFIL DE LED", preco: 75.00, formula: "C * Q * $", unidade: "M" },
+        { codigo: "0827", idX3D: "43856", nome: "DIFUSOR PERFIL ACRÍLICO LED", preco: 45.00, formula: "C * Q * $", unidade: "M" },
+
+        ],
+
+        "COTOVELOS E CLAMPER": [
+        { codigo: "73581", idX3D: "2600454", nome: "ARANDELA", preco: 120.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "47178", idX3D: "2601194", nome: "CLAMPER (PROTETOR CONTRA RAIOS)", preco: 63.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "97715", idX3D: "43584", nome: "COTOVELO 90 G", preco: 1.20, formula: "Q * $", unidade: "UNID" },
+        { codigo: "46115", idX3D: "43585", nome: "COTOVELO INTERNO 20X10", preco: 1.20, formula: "Q * $", unidade: "UNID" },
+
+        ],
+
+        "LEDs, MÓDULOS E FONTES": [
+        { codigo: "34145", idX3D: "834", nome: "CONECTOR BNC PINO FIXO", preco: 6.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "57453", idX3D: "638", nome: "FITA LED 50X50", preco: 18.00, formula: "C * Q * $", unidade: "M" },
+        { codigo: "85845", idX3D: "43888", nome: "FITA LED NEON", preco: 24.00, formula: "C * Q * $", unidade: "M" },
+        { codigo: "68734", idX3D: "43018", nome: "LED MÓDULO COM 3 LENTES", preco: 24.00, formula: "C * Q * $", unidade: "M" },
+        { codigo: "26046", idX3D: "2600935", nome: "FONTE 12V 2A", preco: 67.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "14403", idX3D: "43673", nome: "FONTE 12V 5A", preco: 75.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "1457b", idx3D: "26014044", nome: "FONTE 20", preco: 180.00, formuta: "Q * $", unidade: "UNID" },
+
+        ],
+
+        "LAMPADA LED": [
+        { codigo: "34302", idX3D: "43501", nome: "LÂMPADA LED 0,60", preco: 30.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "4959", idX3D: "43502", nome: "LÂMPADA LED 1,2", preco: 40.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "90512", idX3D: "43833", nome: "SOQUETE CERÂMICA P/LÂMPADA E27", preco: 5.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "67892", idX3D: "768", nome: "SOQUETE P/LÂMPADA TUBULAR", preco: 3.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "52024", idX3D: "2600590", nome: "SUPORTE PRA LÂMPADA", preco: 2.50, formula: "Q * $", unidade: "UNID" },
+
+        ],
+
+        "REFLETORES E PAINEIS DE LED": [
+        { codigo: "99944", idX3D: "43437", nome: "BRAÇO REFLETOR 15X15", preco: 20.00, formula: "C * Q * $", unidade: "M" },
+        { codigo: "18465", idX3D: "1423", nome: "REFLETOR LED 10W", preco: 46.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "81586", idX3D: "2601078", nome: "REFLETOR LED 20W", preco: 55.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "80651", idX3D: "2600847", nome: "REFLETOR LED 50W", preco: 125.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "92116", idX3D: "2600927", nome: "SPOT LED 6W", preco: 20.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "43422", idX3D: "2600422", nome: "PAINEL LED 12W", preco: 36.00, formula: "Q * $", unidade: "UNID" },
+
+        ],
+
+        "TOMADAS, INTERRUPTORES e TEMPORISADORES": [
+        { codigo: "73659", idX3D: "1496", nome: "INTERRUPTOR AUTOMÁTICO 180°", preco: 35.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "31859", idX3D: "1495", nome: "INTERRUPTOR AUTOMÁTICO 360°", preco: 38.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "2494", idX3D: "43578", nome: "INTERRUPTOR P/ FIO", preco: 3.50, formula: "Q * $", unidade: "UNID" },
+        { codigo: "70981", idX3D: "43785", nome: "INTERRUPTOR PARA MÓVEL", preco: 15.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "24289", idX3D: "2600697", nome: "INTERRUPTOR PAREDE", preco: 7.50, formula: "Q * $", unidade: "UNID" },
+ 
+        { codigo: "4597", idX3D: "", nome: "TOMADA FÊMEA", preco: 3.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "54414", idX3D: "43510", nome: "TOMADA MACHO", preco: 5.50, formula: "Q * $", unidade: "UNID" },
+        { codigo: "69926", idX3D: "4351054", nome: "TOMADA MACHO", preco: 1.55, formula: "Q * $", unidade: "UNID" },
+        { codigo: "80865", idX3D: "43110", nome: "PLUG MACHO", preco: 5.00, formula: "Q * $", unidade: "UNID" },
+    
+        { codigo: "46547", idX3D: "1012", nome: "RELÉ FOTOCELULA", preco: 50.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "17041", idX3D: "1182", nome: "TIMER", preco: 115.00, formula: "Q * $", unidade: "UNID" },
+  
+        ],
+
+    },
+
+    "PINTURA": {
+        LIMPESA PISTOLA": [
+        { codigo: "11077", idX3D: "2600965", nome: "GASOLINA LIMPEZA", preco: 8.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "70497", idX3D: "2600873", nome: "THINNER (MEIO LITRO)", preco: 17.00, formula: "Q * $", unidade: "LT" },
+
+        ],
+
+        "ACABAMENTO": [
+        { codigo: "92755", idX3D: "2600874", nome: "LIXA 80, 150, 320", preco: 4.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "30091", idX3D: "43308", nome: "PANO POLIMENTO", preco: 10.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "79476", idX3D: "", nome: "ESTOPA", preco: 2.00, formula: "Q * $", unidade: "UNID" },
+
+        ],
+
+        "PINTURA": [
+        { codigo: "55909", idX3D: "26013912", nome: "FILTRO PARA TINTA", preco: 2.70, formula: "Q * $", unidade: "UNID" },
+        { codigo: "27969", idX3D: "26013864", nome: "PRIMER", preco: 50.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "72049", idX3D: "2600859", nome: "PRIMER (PROMOTOR DE ADERÊNCIA)- 7225", preco: 240.00, formula: "", unidade: "LT" },
+        { codigo: "2015", idX3D: "2600875", nome: "TINTA AUTOMOTIVA (BÁSICA)", preco: 70.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "58863", idX3D: "2601085", nome: "TINTA BRANCO NEVE", preco: 100.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "70666", idX3D: "2601170", nome: "TINTA ESMALTE BRANCO 115-100", preco: 175.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "80057", idX3D: "43297", nome: "TINTA ESMALTE PRETO 115-022", preco: 175.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "97878", idX3D: "2601090", nome: "TINTA GALVITE", preco: 154.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "39199", idX3D: "2601086", nome: "TINTA PRETO FOSCO", preco: 48.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "32308", idX3D: "43295", nome: "TINTA SPRAY", preco: 18.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "14599", idX3D: "2600736", nome: "TINTA SPRAY BRANCO BRILHANTE - TEKBOND", preco: 20.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "6397", idX3D: "26013966", nome: "TINTA SPRAY BRANCO FOSCO - TEKBOND", preco: 30.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "25524", idX3D: "2600738", nome: "TINTA SPRAY DOURADO", preco: 40.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "43912", idX3D: "2600738", nome: "TINTA SPRAY PRATA - TEKBOND", preco: 40.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "58983", idX3D: "43337", nome: "TINTA SPRAY PRETO BRILHANTE - CHEMI COLOR", preco: 20.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "9708", idX3D: "43629", nome: "TINTA SPRAY PRETO FOSCO - CHEMI COLOR", preco: 20.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "80909", idX3D: "43629", nome: "TINTA SPRAY PRETO FOSCO - TEKBOND", preco: 25.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "84358", idX3D: "2600737", nome: "TINTA SPRAY ROSE GOLD METALLIK - 56 - COLORGIN", preco: 50.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "26768", idX3D: "43138", nome: "TINTA SPRAY VERMELHO", preco: 20.00, formula: "Q * $", unidade: "LT" },
+
+        ],
+
+        "RESINA RIGIDA, SELADOR E VERNIZ": [
+        { codigo: "91205", idX3D: "623", nome: "SELADOR MADEIRA", preco: 40.00, formula: "Q * $", unidade: "LT" },
+        { codigo: "6434", idX3D: "43129", nome: "RESINA RÍGIDA (ml/cUNID)", preco: 226.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "50027", idX3D: "43571", nome: "VERNIZ", preco: 70.00, formula: "Q * $", unidade: "LT" },
+
+        { codigo: "87356", idX3D: "", nome: "QUANT. EM ML", preco: 1750, formula: "C[6434], * A[6434], * Q[6434], * $", unidade: "ML" },
+        { codigo: "17175", idX3D: "", nome: "QUANT. EM LITROS", preco: 1.75, formula: "C[6434], * A[6434], * Q[6434], * $", unidade: "LT" },
+
+        ],
+    },
+
+    "MÃO DE OBRA": [
+        { codigo: "967", idX3D: "2600885", nome: "ALMOÇO/LANCHE", preco: 40.00, formula: "Q * $", unidade: "UNID" },
+        { codigo: "99133", idX3D: "2601119", nome: "ALUGUEL DE ANDAIME", preco: 3.00, formula: "Q * $", unidade: "PÇ" },
+        { codigo: "35538", idX3D: "2600846", nome: "FRETE", preco: 3.00, formula: "Q * $", unidade: "H" },
+        { codigo: "0351", idX3D: "", nome: "TEMPO DE PRODUÇÃO (ESTRADA)", preco: 0.83, formula: "Q[35538], / (0.6 * 60) * 2 * 15", unidade: "H" },
+        { codigo: "82991", idX3D: "", nome: "IMPRESSÃO A4 COLORIDA", preco: 2.50, formula: "Q * $", unidade: "UNID" },
+
+        { codigo: "3679", idX3D: "2600884", nome: "TEMPO ATENDIMENTO", preco: 25, formula: "Q * $", unidade: "H" },
+
+        { codigo: "28893", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - LORENA", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "16613", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - EDUARDA", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "78612", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - DANI", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "3898", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - MAICON", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "4326", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - ALICE", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "97773", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS -", preco: 50.00, formula: "Q * $", unidade: "H" },
+
+        { codigo: "9697", idX3D: "43822", nome: "TEMPO DE LASER - MATERIAL CLIENTE (VERIFICAR NO PROGRAMA DE CORTE)", preco: 1.00, formula: "C * Q * $", unidade: "H" },
+        { codigo: "5127", idX3D: "43822", nome: "TEMPO DE LASER (VERIFICAR NO PROGRAMA DE CORTE)", preco: 15, formula: "(C / 60 * Q) * $", unidade: "H" },
+        { codigo: "5664", idX3D: "630", nome: "TEMPO DE PINTURA", preco: 25.00, formula: "Q * $", unidade: "H" },
+        { codigo: "1830", idX3D: "630", nome: "TEMPO PRODUÇÃO COMUNICAÇÃO VISUAL", preco: 25.00, formula: "Q * $", unidade: "H" },
+        { codigo: "2658", idX3D: "630", nome: "TEMPO INSTALAÇÃO COMUNICAÇÃO VISUAL", preco: 25.00, formula: "Q * $", unidade: "H" },
+        { codigo: "6145", idX3D: "630", nome: "TEMPO PRODUÇÃO LETRA CAIXA (ACM/GALVAN) 2h/LETRA", preco: 25, formula: "Q * $", unidade: "H" },
+        { codigo: "3297", idX3D: "2600884", nome: "TEMPO PRODUÇÃO PRESTAÇÃO DE SERVIÇO", preco: 16.00, formula: "Q * $", unidade: "H" },
+        { codigo: "2523", idX3D: "", nome: "VALOR PARA ARREDONDAR", preco: 1, formula: "Q * $", unidade: "UNID" },
+    ],
+};

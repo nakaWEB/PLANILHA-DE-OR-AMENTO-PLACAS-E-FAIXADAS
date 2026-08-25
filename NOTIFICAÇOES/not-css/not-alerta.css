@@ -1,0 +1,113 @@
+    /* Estilos do Modal */
+.modal-alert {
+    display: none;
+    position: fixed;
+    z-index: 1000000000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content-alert {
+    background-color: #ffffff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 60%;
+    height: 30%;
+    min-height: 200px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-alert {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-alert:hover,
+.close-alert:focus {
+    color: #000;
+}
+
+.notification-text-alert h2 {
+    color: #d32f2f;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.notification-text-alert p {
+    color: #333;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .modal-content-alert {
+        width: 90%;
+        height: auto;
+        min-height: 150px;
+        margin: 20% auto;
+        padding: 20px;
+    }
+    
+    .notification-text-alert h2 {
+        font-size: 20px;
+    }
+    
+    .notification-text-alert p {
+        font-size: 16px;
+    }
+}
+.interdiçãofundo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+        z-index: 100000;
+}
+.interdição {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    font-size: 300px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 100000;
+}
+.interdição p {
+    font-size: 100px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #d32f2f;
+}

@@ -1,0 +1,92 @@
+        /* ======= VARIÁVEIS CSS PARA TEMA ======= */
+        :root {
+            --traparente-color: #ffffff00;
+            --primary-color: #0055b1;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --dark-color: #343a40;
+            --light-color: #f8f9fa;
+            --bg-color: #f5f7fa;
+            --text-color: #333;
+            --border-color: #dee2e6;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+        }
+
+/* >.< BODY*/
+
+        /* Para navegadores baseados em WebKit (Chrome, Safari) */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Firefox */
+        body {
+            scrollbar-width: none;
+            /* Oculta a barra de rolagem */
+        }
+
+        /* Chrome, Safari, Edge (estiliza a barra como invisível) */
+        body {
+            -ms-overflow-style: none;
+            /* IE/Edge */
+            overflow: -moz-scrollbars-none;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-top: 70px;
+            padding-bottom: 90px;
+            transition: var(--transition);
+        }
+
+        /* ======= ESTILOS GLOBAIS ======= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* >.< HTML*/
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--light-color);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        /* Para navegadores baseados em Webkit (Chrome, Safari, Edge moderno, Opera) */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Para Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* Para Internet Explorer e Edge antigo */
+html {
+  -ms-overflow-style: none;
+}

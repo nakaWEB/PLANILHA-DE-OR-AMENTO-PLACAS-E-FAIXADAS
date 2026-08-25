@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAIXADAS</title>
+    <!----------------------------------------------//--------------------------------->
+    <link rel="icon" href="./imagens/favicon.ico" type="image/x-icon">
+    <!----------------------------------------------//--------------------------------->
+    <!--painel lateral-->
+    <link rel="stylesheet" href="./ESTILO.css/painelADM.css">
+    <!----------------------------------------------//--------------------------------->
+    <!--estilos-->
+    <link rel="stylesheet" href="./ESTILO.css/barras.css">
+    <link rel="stylesheet" href="./placas e faichadas/PeF CSS/body.css">
+    <link rel="stylesheet" href="./placas e faichadas/PeF CSS/IMGs.css">
+    <link rel="stylesheet" href="./placas e faichadas/PeF CSS/modal.css">
+    <link rel="stylesheet" href="./placas e faichadas/PeF CSS/pagina.css">
+    <link rel="stylesheet" href="./placas e faichadas/PeF CSS/planinha.css">
+    <link rel="stylesheet" href="./placas e faichadas/PeF CSS/responsivo.css">
+    <link rel="stylesheet" href="./placas e faichadas/PeF CSS/utilitarios.css">
+    <link rel="stylesheet" href="./ESTILO.css/intro.css">
+    <!----------------------------------------------//--------------------------------->
+    <!--notificações-->
+    <link rel="stylesheet" href="./NOTIFICAÇOES/not-css/notificacoes.css">
+    <link rel="stylesheet" href="./NOTIFICAÇOES/not-css/not-alerta.css">
+    <!----------------------------------------//--------------------------------------------->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+</head>
+
+<body>
+        <!-- ANIMAÇÃO DE INTRODUÇÃO -->
+    <div class="intro-container">
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <div class="glow" style="top: 30%; left: 30%;"></div>
+        <div class="glow" style="top: 60%; right: 20%; animation-delay: 1.5s;"></div>
+        
+        <div class="spreadsheet-icon">
+            <div class="sheet-line"></div>
+            <div class="sheet-line"></div>
+            <div class="sheet-line"></div>
+            <div class="sheet-line"></div>
+            <div class="sheet-line"></div>
+            <div class="data-cell"></div>
+            <div class="data-cell"></div>
+            <div class="data-cell"></div>
+        </div>
+        
+        <h1 class="intro-title">Orçamentos</h1>
+        <p class="intro-subtitle">Planilha Orçamentos placa e faichadas - 20.04.26:1tf - ARAMES<p style="color: aliceblue;">Utilize os atalhos.: Ctrl + s (para salvar), e Ctrl + p (para imprimir)
+        </p>
+        
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+    
+    <!--CONTEUDO PRINCIPAL-->
+    <!-----------------------------------//--------------------------------------->
+    <img class="planoF" src="./imagens/plano de fundo folha.png" alt="">
+
+    <!-- Helper para IndexedDB (1 kB) -->
+    <script src="https://cdn.jsdelivr.net/npm/idb-keyval@6/dist/umd.js"></script>
+    <!-- bibliotecas necessárias -->
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4/dist/exceljs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2/dist/FileSaver.min.js"></script>
+
+    <!-- script com a função -->
+    <script src="./placas e faichadas/PeF JS/scriptPeF.js"></script>
+
+    <!-- Input oculto para importar Excel -->
+    <input type="file" id="importExcelInput" accept=".xlsx" style="display: none;"
+        onchange="importarExcelOtimizado(this.files[0])">
+
+    <!-- Loading -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+
+
+    <!-- Admin Panel -->
+    <div class="admin-panel">
+        <div class="monopolio"></div>
+                <button class="btn-warning" onclick="resetProducts()">
+            <i class="fas fa-undo"></i> Resetar Produtos
+        </button>
+        <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border-color);">
+            <label style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 5px;">
+                <i class="fas fa-filter"></i> Categoria:
+            </label>
+            <select id="categoryFilter" onchange="filterByCategory()" style="margin-bottom: 10px;">
+                <option value="">Todas</option>
+            </select>
+
+            <label style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 5px;">
+                <i class="fas fa-search"></i> Buscar:
+            </label>
+            <input type="text" id="searchInput" placeholder="Buscar produto (nome)..." onkeyup="searchProducts()"
+                style="margin-bottom: 15px;">
+        </div>
+
+        <div class="gridbtnSeC">
+<button id="btnSeC" class="btn-success" onclick="exportarExcelCompleto()">
+    <i class="fas fa-file-excel"></i>Salvar
+</button>
+
+<script>
+document.addEventListener("keydown", function(event) {
+    // Verifica Ctrl + S (ou Cmd + S no Mac)
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") {
+        event.preventDefault(); // impede o "Salvar página" do navegador
+        
+        // Executa a função do botão
+        exportarExcelCompleto();
+
+        // OU, se preferir simular clique:
+        // document.getElementById("btnSeC").click();
+    }
+});
+</script>
+
+<!--botão abrir-->
+            <button id="btnSeC" class="action-button btn-load"
+                onclick="document.getElementById('importExcelInput').click()" title="Carregar Orçamento">
+                <i class="fas fa-folder-open"></i>Abir
+            </button>
+        </div>
+
+<!--botão imprimir-->
+<button style="height: 20px; width: 100%; justify-content: center;" 
+    class="btn-info" 
+    onclick="imprimirExcelCompleto()">
+    <i class="fas fa-print"></i> IMPRIMIR
+</button>
+
+<script>
+document.addEventListener("keydown", function(event) {
+    // Verifica Ctrl + P (ou Cmd + P no Mac)
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "p") {
+        event.preventDefault(); // impede a janela de impressão padrão
+        
+        // Executa sua função
+        imprimirExcelCompleto();
+
+        // OU simula clique no botão:
+        // document.querySelector(".btn-info").click();
+    }
+});
+</script>
+
+<!--calculadora-->
+        <button style="height: 20px; width: 100%; justify-content: center;" class="btn-success"
+            onclick="showCalculatorModal()" style="margin-top: 10px;">
+            <i class="fas fa-calculator"></i> Calculadora
+        </button>
+
+        <!--intruçoes-->
+<button onclick="window.location.href='./instrucoes.html'" 
+    id="btnInstrucoes" 
+    type="button"
+    style="font-size: 18px; position: relative; left: 50%; transform: translateX(-50%); height: 50px; width: 100%; justify-content: center;"
+    title="instruções">
+    instruções
+</button>
+    </div>
+
+    <div class="doby-center">
+        <div class="barratopo">
+            <h4 class="Gerenciar-Produtos"><i class="fas fa-cog"></i> Gerenciar Produtos</h4>
+            <!-- GitHub Pages Info -->
+            <div class="github-info">
+                <a href="./index.html" class="logo">AS INFORMATICA</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="paginas-container"></div>
+    <div class="barra-inferior" id="barra-inferior"></div>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Adicionar Novo Produto</h3>
+                <span class="close" onclick="closeModal('addProductModal')">&times;</span>
+            </div>
+            <div class="form-group">
+                <label for="productCode"><i class="fas fa-barcode"></i> Código:</label>
+                <input type="text" id="productCode" required placeholder="Digite o código do produto">
+            </div>
+            <div class="form-group">
+                <label for="productName"><i class="fas fa-tag"></i> Nome:</label>
+                <input type="text" id="productName" required placeholder="Digite o nome do produto">
+            </div>
+            <div class="form-group">
+                <label for="productCategory"><i class="fas fa-folder"></i> Categoria:</label>
+                <select id="productCategory">
+                    <option value="ESTRUTURA METALICA">ESTRUTURA METALICA</option>
+                    <option value="LONAS E ADESIVOS">LONAS E ADESIVOS</option>
+                    <option value="ACM FUNDO">ACM FUNDO</option>
+                    <option value="PVC">PVC</option>
+                    <option value="ILUMINAÇÃO">ILUMINAÇÃO</option>
+                    <option value="MDF">MDF</option>
+                    <option value="PINTURA">PINTURA</option>
+                    <option value="MÃO DE OBRA">MÃO DE OBRA</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="productPrice"><i class="fas fa-dollar-sign"></i> Preço:</label>
+                <input type="number" id="productPrice" step="0.01" required placeholder="0.00">
+            </div>
+            <div class="form-group">
+                <label for="productUnit"><i class="fas fa-ruler"></i> Unidade:</label>
+                <input type="text" id="productUnit" value="UNID" placeholder="UNID, M, M², etc.">
+            </div>
+            <div class="form-group">
+                <label for="productFormula"><i class="fas fa-calculator"></i> Fórmula:</label>
+                <input type="text" id="productFormula" value="Q * $" placeholder="Q * $, C * A * Q * $, etc.">
+                <small>Use: Q=Quantidade, $=Preço, C=Comprimento, A=Largura</small>
+            </div>
+            <div class="btn-group">
+                <button class="btn-primary" onclick="addProduct()">
+                    <i class="fas fa-check"></i> Adicionar
+                </button>
+                <button class="btn-warning" onclick="closeModal('addProductModal')">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import Modal -->
+    <div id="importModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-file-import"></i> Importar Produtos (CSV)</h3>
+                <span class="close" onclick="closeModal('importModal')">&times;</span>
+            </div>
+            <div class="form-group">
+                <label for="csvFile"><i class="fas fa-file-csv"></i> Arquivo CSV:</label>
+                <input type="file" id="csvFile" accept=".csv" onchange="handleFileSelect(event)">
+                <small>O arquivo deve conter: código, nome, preco, formula, unidade, categoria</small>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-paste"></i> Ou cole o conteúdo CSV:</label>
+                <textarea id="csvContent" rows="10" style="width: 100%; font-family: monospace; resize: vertical;"
+                    placeholder="codigo,nome,preco,formula,unidade,categoria
+PROD001,Produto Exemplo,10.50,Q * $,UNID,ESTRUTURA METALICA"></textarea>
+            </div>
+            <div class="btn-group">
+                <button class="btn-success" onclick="importFromText()">
+                    <i class="fas fa-upload"></i> Importar
+                </button>
+                <button class="btn-warning" onclick="closeModal('importModal')">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calculadora Modal -->
+    <div id="calculatorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-calculator"></i> Calculadora</h3>
+                <span class="close" onclick="closeModal('calculatorModal')">&times;</span>
+            </div>
+            <div class="form-group">
+                <label>Display:</label>
+                <input type="text" id="calcDisplay" readonly style="text-align: right; font-size: 18px;">
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                <button onclick="calcClear()" class="btn-warning">C</button>
+                <button onclick="calcAppend('/')" class="btn-info">/</button>
+                <button onclick="calcAppend('*')" class="btn-info">*</button>
+                <button onclick="calcDelete()" class="btn-danger">⌫</button>
+
+                <button onclick="calcAppend('7')">7</button>
+                <button onclick="calcAppend('8')">8</button>
+                <button onclick="calcAppend('9')">9</button>
+                <button onclick="calcAppend('-')" class="btn-info">-</button>
+
+                <button onclick="calcAppend('4')">4</button>
+                <button onclick="calcAppend('5')">5</button>
+                <button onclick="calcAppend('6')">6</button>
+                <button onclick="calcAppend('+')" class="btn-info">+</button>
+
+                <button onclick="calcAppend('1')">1</button>
+                <button onclick="calcAppend('2')">2</button>
+                <button onclick="calcAppend('3')">3</button>
+                <button onclick="calcCalculate()" class="btn-success" style="grid-row: span 2;">=</button>
+
+                <button onclick="calcAppend('0')" style="grid-column: span 2;">0</button>
+                <button onclick="calcAppend('.')">.</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+    <script src="./NOTIFICAÇOES/not-css/not-alerta.css"></script>
+
+    <!-- Notificação alerta -->
+    <div id="notificationModal-alert" class="modal-alert">
+        <div class="modal-content-alert">
+            <span class="close-alert">&times;</span>
+            <div class="notification-text-alert">
+                <h2>Aviso Importante</h2>
+                <p>Todos os orçamentos feitos antes do dia 21/01/2026 podem conter erros. Verifique-os e, caso haja
+                    algum erro, relate para que seja corrigido.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

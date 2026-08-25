@@ -1,0 +1,89 @@
+        /* ======= VARIÁVEIS CSS PARA TEMA ======= */
+        :root {
+            /*planilha*/
+            --fundo-planilha: rgba(255, 255, 255, 0.233);
+            --topo-tabela: rgba(0, 0, 0, 0.233);
+            --linha-planilha: #ffffff;
+
+            --celula-par: rgba(0, 0, 0, 0.02);
+            --celula-hover: rgba(0, 0, 0, 0.123);
+            --celula-valores: rgb(243, 243, 243);
+            --valor-celula: rgb(0, 0, 0);
+            --celula-valores-focus: rgb(0, 0, 0);
+            --valor-celula-focus: rgb(255, 255, 255);
+            --borda-focus: rgb(255, 209, 209);
+
+            --fundo-btn-clone: #000000;
+            --fundo-btn-clone-hover: rgba(0, 0, 0, 0.315);
+            --valor: rgb(0, 177, 15);
+
+            --barra-imposto: rgba(255, 255, 255, 0.02);
+            --total: rgba(255, 255, 255, 0.151);
+
+            --borda-img-at: rgb(255, 255, 255);
+            /*universal*/
+            --branco-puro: white;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 8px;
+            --escrita: #ffffff;
+            --border-radius-lg: 12px;
+            /*esclusivo menu*/
+            --borda: white;
+            --botãofundo: rgba(255, 255, 255, 0.479);
+            --botãofundo-hover: rgba(255, 255, 255, 0.438);            
+            --fundo: linear-gradient(180deg,
+                    #001631 0%,
+                    #001a407a 100%);
+            --buscafundo: rgb(0, 0, 0);
+            --arealogo: #001631;
+            --empresa-h2: white;
+            --empresa-span: #7cc8ff;
+            --monopolio: #dadada8a;
+            --teste: red;
+
+            /*MENU*/
+            
+        }
+
+        body.light-mode {
+            /*planilha*/
+            --fundo-planilha: rgba(240, 240, 240, 0.233);
+            --topo-tabela: rgba(143, 143, 143, 0.233);
+            --linha-planilha: #000000;
+
+            --celula-par: rgba(0, 0, 0, 0.02);
+            --celula-hover: rgba(0, 0, 0, 0.123);
+            --celula-valores: rgb(255, 255, 255);
+            --valor-celula: rgb(0, 0, 0);
+            --celula-valores-focus: rgb(212, 212, 212);
+            --valor-celula-focus: rgb(0, 0, 0);
+            --borda-focus: rgb(255, 240, 240);
+
+            --fundo-btn-clone: #ffffffd2;
+            --fundo-btn-clone-hover: rgba(0, 0, 0, 0.315);
+            --valor: rgb(0, 177, 15);
+
+            --barra-imposto: rgba(255, 255, 255, 0.02);
+            --total: rgba(143, 143, 143, 0.233);
+
+            --borda-img-at: rgb(0, 0, 0);
+            /*universal*/
+            --branco-puro: white;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 8px;
+            --escrita: #000000;
+            --border-radius-lg: 12px;
+            /*esclusivo menu*/
+            --borda: rgb(0, 0, 0);
+            --botãofundo: rgb(247, 247, 247);
+            --botãofundo-hover: rgba(0, 0, 0, 0.322);            
+            --fundo: linear-gradient(180deg,
+                    #ffffff 0%,
+                    #ffffff7c 100%);
+            --buscafundo: white;
+            --arealogo: #ffffff;
+            --empresa-h2: rgb(0, 0, 0);
+            --empresa-span: #7cc8ff;
+            --monopolio: #dadada8a;
+            --teste: red;
+        }

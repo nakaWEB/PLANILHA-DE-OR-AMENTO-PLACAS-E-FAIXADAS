@@ -1,0 +1,35 @@
+/* Botão */
+
+.theme-switch{
+    padding:10px 15px;
+}
+
+#toggleTheme{
+    position: absolute;
+    top: 87%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width:85%;
+    border:none;
+    border-radius:10px;
+
+    padding:5px;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    background:#00225e;
+    color:white;
+
+    transition:.3s;
+}
+
+body.light-mode #toggleTheme {
+    background:#f5f5f5;
+    color:rgb(0, 0, 0);
+}

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADESIVOS</title>
+    <!----------------------------------------------//--------------------------------->
+    <link rel="icon" href="./imagens/favicon.ico" type="image/x-icon">
+    <!----------------------------------------------//--------------------------------->
+    <!--painel lateral-->
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/painelADM.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/footer ORÇ.css">
+    <!----------------------------------------------//--------------------------------->
+    <!--estilos  anexado-->
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/barras.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/tema.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/fundo.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/body.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/modal.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/pagina.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/planinha AT.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/planilha z-univerçal.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/responsivo.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/utilitarios.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/intro.css">
+    <link rel="stylesheet" href="./1-ESTILO/ESTILO.css/block-scrol.css">
+    <!----------------------------------------------//--------------------------------->
+    <!--notificações-->
+    <link rel="stylesheet" href="./NOTIFICAÇOES/not-css/notificacoes.css">
+    <link rel="stylesheet" href="./NOTIFICAÇOES/not-css/not-alerta.css">
+    <!----------------------------------------//--------------------------------------------->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!------------------------------------------------//--------------------------------------->
+    <!--PDF-->
+
+</head>
+
+<body>
+    <!-- ANIMAÇÃO DE INTRODUÇÃO -->
+    <!--CONTEUDO PRINCIPAL-->
+    <!-----------------------------------//--------------------------------------->
+    <img class="imgfundo" src="./imagens/plano de fundo folha.png" alt="">
+
+    <!-- Helper para IndexedDB (1 kB) -->
+    <script src="https://cdn.jsdelivr.net/npm/idb-keyval@6/dist/umd.js"></script>
+
+    <!-- bibliotecas necessárias -->
+    <script src="https://cdn.jsdelivr.net/npm/exceljs@4/dist/exceljs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2/dist/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- script com a função -->
+    <script src="./2-BANCO DE PRODUTOS/2-rapidos/RAPIDOS COM ADESIVOS.js"></script>
+    <script src="./PDF/teste36b.js"></script>
+
+    <!-- Input oculto para importar Excel -->
+    <input type="file" id="importExcelInput" accept=".xlsx" style="display: none;"
+        onchange="importarExcelOtimizado(this.files[0])">
+
+    <!-- Loading -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel">
+        <!-- Logo -->
+        <div class="logo-area">
+            <img class="logo" src="./imagens/LOGO SEM FUNDO.png" alt="">
+
+            <div class="empresa">
+                <h2>AS INFORMÁTICA</h2>
+                <span>ORÇAMENTOS</span>
+            </div>
+
+        </div>
+
+        <!--MENU - PRINCIPAL-->
+        <div class="monopolio"></div>
+
+        <!--resetar produto-->
+        <button class="btn-warning" onclick="resetProducts()">
+            <i class="fas fa-undo"></i> Resetar Produtos
+        </button>
+
+        <!--pesquisa-->
+        <div style=" margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border-color);">
+            <label style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 5px;">
+                <i class="fas fa-filter"></i> Categoria:
+            </label>
+            <select id="categoryFilter" onchange="filterByCategory()"
+                style="background: var(--botãofundo); margin-bottom: 10px;">
+                <option value="">Todas</option>
+            </select>
+
+            <label style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 5px;">
+                <i class="fas fa-search"></i> Buscar:
+            </label>
+            <input type="text" id="searchInput" placeholder="Buscar produto (nome)..." onkeyup="searchProducts()"
+                style="color: var(--escrita); background: var(--buscafundo); margin-bottom: 15px;">
+        </div>
+
+        <!--salvar e abrir-->
+        <div class="gridbtnSeC">
+            <!--botão salvar-->
+            <button id="btnSeC" class="btn-success" onclick="exportarExcelCompleto()">
+                <i class="fas fa-file-excel"></i>Salvar
+            </button>
+
+            <script>
+                document.addEventListener("keydown", function (event) {
+                    // Verifica Ctrl + S (ou Cmd + S no Mac)
+                    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") {
+                        event.preventDefault(); // impede o "Salvar página" do navegador
+
+                        // Executa a função do botão
+                        exportarExcelCompleto();
+
+                        // OU, se preferir simular clique:
+                        // document.getElementById("btnSeC").click();
+                    }
+                });
+            </script>
+
+            <!--botão abrir-->
+            <button id="btnSeC" class="action-button btn-load"
+                onclick="document.getElementById('importExcelInput').click()" title="Carregar Orçamento">
+                <i class="fas fa-folder-open"></i>Abir
+            </button>
+        </div>
+
+        <!--botão imprimir-->
+        <button style="height: 20px; width: 100%; justify-content: center;" class="btn-info"
+            onclick="imprimirExcelCompleto()">
+            <i class="fas fa-print"></i> IMPRIMIR
+        </button>
+
+        <script>
+            document.addEventListener("keydown", function (event) {
+                // Verifica Ctrl + P (ou Cmd + P no Mac)
+                if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "p") {
+                    event.preventDefault(); // impede a janela de impressão padrão
+
+                    // Executa sua função
+                    imprimirExcelCompleto();
+
+                    // OU simula clique no botão:
+                    // document.querySelector(".btn-info").click();
+                }
+            });
+        </script>
+
+        <!--calculadora-->
+        <button style="height: 20px; width: 100%; justify-content: center;" class="btn-success"
+            onclick="showCalculatorModal()" style="margin-top: 10px;">
+            <i class="fas fa-calculator"></i> Calculadora
+        </button>
+
+        <!--ORÇAMENTOS-->
+        <button style="height: 20px; width: 100%; justify-content: center;" class="btn-success"
+            onclick="window.location.href='./index.html'" style="margin-top: 10px;">
+            <i class="fa-solid fa-house"></i> Home
+        </button>
+
+        <button type="button" onclick="gerarPDFDoOrcamento()">
+            <i class="fas fa-file-pdf" style="margin-right:8px;"></i> GERAR E BAIXAR PDF
+        </button>
+
+        <!--tema-->
+        <div class="theme-switch">
+            <button id="toggleTheme">
+                <i class="fa-solid fa-moon"></i>
+                <span>Modo Claro</span>
+            </button>
+        </div>
+    </div>
+    </div>
+
+
+    <div id="paginas-container"></div>
+    <div class="barra-inferior" id="barra-inferior"></div>
+
+
+
+    <!-- Calculadora Modal -->
+    <div id="calculatorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-calculator"></i> Calculadora</h3>
+                <span class="close" onclick="closeModal('calculatorModal')">&times;</span>
+            </div>
+            <div class="form-group">
+                <label>Display:</label>
+                <input type="text" id="calcDisplay" readonly style="text-align: right; font-size: 18px;">
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+                <button onclick="calcClear()" class="btn-warning">C</button>
+                <button onclick="calcAppend('/')" class="btn-info">/</button>
+                <button onclick="calcAppend('*')" class="btn-info">*</button>
+                <button onclick="calcDelete()" class="btn-danger">⌫</button>
+
+                <button onclick="calcAppend('7')">7</button>
+                <button onclick="calcAppend('8')">8</button>
+                <button onclick="calcAppend('9')">9</button>
+                <button onclick="calcAppend('-')" class="btn-info">-</button>
+
+                <button onclick="calcAppend('4')">4</button>
+                <button onclick="calcAppend('5')">5</button>
+                <button onclick="calcAppend('6')">6</button>
+                <button onclick="calcAppend('+')" class="btn-info">+</button>
+
+                <button onclick="calcAppend('1')">1</button>
+                <button onclick="calcAppend('2')">2</button>
+                <button onclick="calcAppend('3')">3</button>
+                <button onclick="calcCalculate()" class="btn-success" style="grid-row: span 2;">=</button>
+
+                <button onclick="calcAppend('0')" style="grid-column: span 2;">0</button>
+                <button onclick="calcAppend('.')">.</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+    <script src="./NOTIFICAÇOES/not-css/not-alerta.css"></script>
+
+    <!-- Notificação alerta -->
+    <div id="notificationModal-alert" class="modal-alert">
+        <div class="modal-content-alert">
+            <span class="close-alert">&times;</span>
+            <div class="notification-text-alert">
+                <h2>Aviso Importante</h2>
+                <p>Todos os orçamentos feitos antes do dia 21/01/2026 podem conter erros. Verifique-os e, caso haja
+                    algum erro, relate para que seja corrigido.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <p class="versao">AS INFORMATICA &copy; 2015-2026 <br>
+            Planilha de Orçamentos v3.0 (beta)</p>
+    </footer>
+
+    <!--TEMA-->
+    <script>
+
+        const btn = document.getElementById("toggleTheme");
+
+        btn.addEventListener("click", () => {
+
+            document.body.classList.toggle("light-mode");
+
+            const icon = btn.querySelector("i");
+            const text = btn.querySelector("span");
+
+            if (document.body.classList.contains("light-mode")) {
+
+                icon.className = "fa-solid fa-sun";
+                text.textContent = "Modo Escuro";
+
+                localStorage.setItem("theme", "light");
+
+            } else {
+
+                icon.className = "fa-solid fa-moon";
+                text.textContent = "Modo Claro";
+
+                localStorage.setItem("theme", "dark");
+
+            }
+
+        });
+
+        /* Salva a escolha */
+
+        if (localStorage.getItem("theme") === "light") {
+
+            document.body.classList.add("light-mode");
+
+            btn.querySelector("i").className = "fa-solid fa-sun";
+            btn.querySelector("span").textContent = "Modo Escuro";
+        }
+
+    </script>
+
+    <!--<div class="interdiçãofundo=="></div>---<h4 class="interdição=="><i class="fa-solid fa-triangle-exclamation" style="color: rgb(255, 238, 0);"><p>INTERDITADO</p></i></h4>-->
+</body>
+
+</html>

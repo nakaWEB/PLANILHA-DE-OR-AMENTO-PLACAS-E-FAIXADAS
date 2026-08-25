@@ -1,0 +1,191 @@
+        /* >.< SITE*/
+        /* >.< PLANILHAS*/
+        .planilha { 
+            width: calc(78%);
+            margin: 0px 0px 0px 0px;
+            margin-left: 21%;
+
+            border-collapse: collapse;
+            background: var(--fundo-planilha);
+            
+            backdrop-filter: blur(2px);
+            
+            border-radius: 10px;
+            overflow: hidden;
+
+            transition: var(--transition);
+        }
+
+        .planilha thead {
+            background: var(--topo-tabela);
+            color: var(--branco-puro);
+            position: sticky;
+            top: 0px;
+            z-index: 10;
+        }
+
+        .planilha th,
+        .planilha td {
+            border: 1px solid var(--linha-planilha);
+            padding: 4px;
+            text-align: left;
+            transition: var(--transition);
+        }
+
+        .planilha tbody tr {
+            transition: var(--transition);
+        }
+
+        .planilha tbody tr:nth-child(even) {
+            background: var(--celula-par);
+        }
+
+        .planilha tbody tr:hover {
+            background: var(--celula-hover);
+            transform: scale(1.01);
+        }
+
+        .info-extra td {
+            background: linear-gradient(45deg, #fff2c7, #ffeaa7);
+            font-weight: bold;
+            color: var(--teste);
+        }
+
+        /* >.< BOTÃO CLONAR*/
+        .col-clonar {
+            width: 40px;
+            text-align: center;
+        }
+
+        .btn-clone {
+            background: var(--fundo-btn-clone);
+            color: var(--letra);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            margin: 0 auto;
+        }
+
+        .btn-clone:hover {
+            background: var(--fundo-btn-clone-hover);
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* >.< INPUTS*/
+        input[type="number"],
+        input[type="text"] {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 14px;
+            border: 1px solid var(--borda);
+            border-radius: var(--border-radius);
+            background: var(--celula-valores);
+            color: var(--valor-celula);
+            transition: var(--transition);
+        }
+
+        input[type="number"]:focus,
+        input[type="text"]:focus {
+            outline: none;
+            color: var(--valor-celula-focus);
+            border-color: var(--borda-focus);
+            background:  var(--celula-valores-focus);
+        }
+
+        .valor-total {
+            font-weight: bold;
+            color: var(--valor);
+            font-size: 15px;
+        }
+        
+        #tabela-total-geral :hover {
+    filter: blur(10px);
+}
+
+/* ======= CÁPSULAS COLAPSÁVEIS ======= */
+.capsula-container {
+    
+    margin-bottom: 15px;
+    overflow: hidden;
+    transform: translate(21%, 0%);
+}
+
+.capsula-header {
+    width: 78%;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #ffffff50 0%, #bebebe50 100%);
+    color: rgb(0, 0, 0);
+    border: 1px solid rgba(161, 161, 161, 0.548);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-align: left;
+    border-radius: 8px;
+}
+
+.capsula-header:hover {
+    background: linear-gradient(135deg, #ffffff50 0%, #bebebe50 100%);
+    transform: translateY(-1.5px);
+}
+
+.capsula-header.ativa {
+    background: linear-gradient(135deg, #edebff 0%, #ffe7ea 100%);
+}
+
+.capsula-icon {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+    width: 20px;
+    text-align: center;
+}
+
+.capsula-header.ativa .capsula-icon {
+    transform: rotate(90deg);
+}
+
+.capsula-titulo {
+    flex: 1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.capsula-contador {
+    font-size: 12px;
+    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.capsula-conteudo {
+    display: none;
+    animation: slideDown 0.3s ease;
+}
+
+.capsula-conteudo .planilha {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

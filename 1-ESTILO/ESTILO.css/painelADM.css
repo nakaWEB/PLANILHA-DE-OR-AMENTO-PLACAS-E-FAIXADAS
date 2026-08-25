@@ -1,0 +1,184 @@
+       * {
+            color: var(--escrita);
+        }
+
+        /* Logo */
+
+
+.logo-area{
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background: var(--arealogo);
+
+    display:flex;
+    align-items:center;
+    padding: 5px;
+    gap:14px;
+}
+
+.logo{
+    height:25px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.empresa h2{
+    font-size:12px;
+    color: var(--empresa-h2);
+}
+
+.empresa span{
+    font-size:9px;
+    color: var(--empresa-span);
+}
+
+        /* >.< PANEL ADMIN*/
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 20%;
+            height: 100vh;
+
+            background: var(--fundo);
+            color: var(--escrita);
+
+            padding: 10px;
+            z-index: 1001;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            transition: var(--transition);
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .monopolio {
+            width: 100%;
+            height: 0.2%;
+            margin-top: 2%;
+            background: var(--monopolio);
+        }
+
+        /*logo painel admin*/
+        .admin-panel h4 {
+            margin: 0 0 10px 0;
+            color: var(--escrita);
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .admin-panel button {
+            width: 100%;
+            margin: 4px 0;
+            padding: 12px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--botãofundo);
+            justify-content: center;
+        }
+
+        .admin-panel button:hover {
+            transform: translateY(-2px);
+        }
+
+        /*botoes salvar e carregar*/
+        .gridbtnSeC {
+            color: var(--escrita);
+            position: relative;
+            top: -4%;
+            transform: translate(0%, 50%);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 5px;
+        }
+
+
+        #btnSeC {
+            width: 48%;
+            height: min-content;
+            padding: 7px;
+            margin: 2px;
+            color: var(--escrita);
+        }
+
+
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 999;
+        }
+
+        .action-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--escrita);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-button:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        /* >.< IMPUTS PAINEL ADMIN*/
+        .admin-panel input,
+        .admin-panel select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid var(--borda);
+            border-radius: var(--border-radius);
+            color: var(--letra);
+            font-size: 13px;
+            transition: var(--transition);
+            background: var(--buscafundo);
+        }
+
+        .admin-panel input:focus,
+        .admin-panel select:focus {
+            outline: none;
+            border-color: var(--borda);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        /* Para navegadores baseados em Webkit (Chrome, Safari, Edge moderno, Opera) */
+        html::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Para Firefox */
+        html {
+            scrollbar-width: none;
+        }
+
+        /* Para Internet Explorer e Edge antigo */
+        html {
+            -ms-overflow-style: none;
+        }

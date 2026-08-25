@@ -1,0 +1,107 @@
+// ======= VARIÁVEIS GLOBAIS =======
+const nomesPaginas = [
+    "CLIENTE", "TOLDO POLICARBONATO",
+    "TOLDO CORTINA", "ORÇAMENTO", "TOTAL GERAL"
+];
+
+let bibliotecaOrcamentos = JSON.parse(localStorage.getItem('bibliotecaOrcamentos')) || [];
+let currentProductId = 1000;
+let isDarkTheme = localStorage.getItem('darkTheme') === 'true';
+
+//catalogoProdutos vista
+// USE { codigo: "", idX3D: "", nome: "", preco: , formula: "", unidade: "" },
+//PARA ADICIONAR PRODUTOS. OBS. TODOS DEVEM TER UMA VIRGULA NO FINAL MENOS O ULTIMO DE CADA SEÇÃO
+let catalogoProdutos = {
+    "TOLDO POLICARBONATO": {
+
+       "POLICARBONATO": [
+            { codigo: "xvc", idX3D: "", nome: "POLI 4MM 2,10X6M", preco: 90, formula: "C * A * Q * $", unidade: "M²" },
+            { codigo: "xvc", idX3D: "", nome: "POLI 6MM 2,1X6M", preco: 140, formula: "C * A * Q * $", unidade: "M²" },
+            { codigo: "xvc", idX3D: "", nome: "POLI 4MM 1,05X6M", preco: 90, formula: "C * A * Q * $", unidade: "M²" },
+            { codigo: "xvc", idX3D: "", nome: "POLI 6MM 1,05X6M", preco: 140, formula: "C * A * Q * $", unidade: "M²" },
+            { codigo: "xvc", idX3D: "", nome: "PERFIL H 6MM", preco: 25, formula: "C * $", unidade: "M" },
+            { codigo: "xvc", idX3D: "", nome: "ACABAMENTO", preco: 12, formula: "C * Q * $", unidade: "M" },
+        ],
+
+        "PINTURA": [
+            { codigo: "xvc", idX3D: "", nome: "LIXA", preco: 3, formula: "Q * $", unidade: "UNID" },
+            { codigo: "xvc", idX3D: "", nome: "TINTA", preco: 70, formula: "Q * $", unidade: "LT" },
+            { codigo: "xvc", idX3D: "", nome: "PRIMER", preco: 20, formula: "Q * $", unidade: "LT" },
+            { codigo: "xvc", idX3D: "", nome: "THINER", preco: 22, formula: "Q * $", unidade: "LT" },
+            { codigo: "xvc", idX3D: "", nome: "GASOLINA PRA LIMPESA", preco: 16, formula: "Q * $", unidade: "LT" },
+            { codigo: "xvc", idX3D: "", nome: "TEMPO DE PINTURA", preco: 225, formula: "Q * $", unidade: "H" },
+        ],
+
+        "ESTRUTURA METALICA": [
+            { codigo: "xvc", idX3D: "", nome: "METALON GALV. 20X20", preco: 15, formula: "C * Q  * $", unidade: "M" },	                               
+            { codigo: "xvc", idX3D: "", nome: "METALON GALV. 20X20	CURVA", preco: 15, formula: "C * Q * $", unidade: "M" },
+            { codigo: "xvc", idX3D: "", nome: "METALON GALV. 15X15", preco: 15, formula: "((A + C)* 2) * $ * Q", unidade: "PER" },
+            { codigo: "xvc", idX3D: "", nome: "METALON GALV. 20X40", preco: 15, formula: "((A + C)* 2) * $ * Q", unidade: "PER" },
+            { codigo: "xvc", idX3D: "", nome: "METALON GALV. 20X40 EM CURVA", preco: 20, formula: "((A + C)* 2) * $ * Q", unidade: "PER" },
+            { codigo: "xvc", idX3D: "", nome: "METALON GALV. 30X50	CAIBRO", preco: 40, formula: "Q * $", unidade: "M" },
+            { codigo: "xvc", idX3D: "", nome: "PERFIL U 75MM	VIGA", preco: 60, formula: "C * Q * $", unidade: "M" },
+            { codigo: "xvc", idX3D: "", nome: "PERFIL U 75MM	TOCO", preco: 60, formula: "C * Q * $", unidade: "M" },
+            { codigo: "xvc", idX3D: "", nome: "SUPORTE", preco: 5, formula: "Q * $", unidade: "UNID" },
+            { codigo: "xvc", idX3D: "", nome: "PARAFUSO AUTO BROCANTE 4,2X16", preco: 0.30, formula: "Q * $", unidade: "UNID" },
+            { codigo: "xvc", idX3D: "", nome: "PARAFUSO 1/4", preco: 1, formula: "Q * $", unidade: "UNID" },
+            { codigo: "xvc", idX3D: "", nome: "BUCHA 10", preco: 0.50, formula: "Q * $", unidade: "UNID" },
+            { codigo: "xvc", idX3D: "", nome: "REBITE 4X10", preco: 0.30, formula: "Q * $", unidade: "UNID" },
+            { codigo: "xvc", idX3D: "", nome: "ELETRODO 2,5 5KG 266 UNID", preco: 0.50, formula: "Q * $", unidade: "UNID" },
+            { codigo: "xvc", idX3D: "", nome: "DISCO CORTE 14'", preco: 20, formula: "Q * $", unidade: "UNID" },
+            { codigo: "xvc", idX3D: "", nome: "DISCO CORTE LIXADEIRA", preco: 6, formula: "Q * $", unidade: "UNID" },
+            { codigo: "xvc", idX3D: "", nome: "DISCO DESBASTE LIXADEIRA", preco: 10.60, formula: "Q * $", unidade: "UNID" },
+            { codigo: "xvc", idX3D: "", nome: "SILICONE", preco: 25, formula: "Q * $", unidade: "UNID" },
+        ],
+
+        "MÃO DE OBRA": [
+            { codigo: "xvc", idX3D: "", nome: "TEMPO ATENDIMENTO", preco: 25, formula: "Q * $", unidade: "H" },
+            { codigo: "xvc", idX3D: "", nome: "TEMPO PRODUÇAO", preco: 25, formula: "Q * $", unidade: "H" },
+            { codigo: "xvc", idX3D: "", nome: "TEMPO DE INSTALAÇÃO", preco: 25, formula: "Q * $", unidade: "H" },
+            { codigo: "xvc", idX3D: "", nome: "ALMOÇO/LANCHE", preco: 40, formula: "Q * $", unidade: "UND" },
+            { codigo: "xvc", idX3D: "", nome: "FRETE", preco: 1.50, formula: "Q * $ * 2", unidade: "KM" },
+        ]
+    },
+
+    "TOLDO CORTINA": {
+        "LONA": [
+            { codigo: "xvc", idX3D: "", nome: "LONA", preco: 80, formula: "Q * C * A * $", unidade: "M²"},
+        ],
+
+        "MAQUINA": [
+            { codigo: "xvc", idX3D: "", nome: "MAQUINA REDUTOR", preco: 130, formula: "Q * $", unidade: "UNID"},
+            { codigo: "xvc", idX3D: "", nome: "MOLA PRA TOLDO 10", preco: 256, formula: "Q * $", unidade: "UNID"},
+        ],
+
+        "ESTRUTURA METALICA": [
+            { codigo: "xvc", idX3D: "", nome: "HASTE / METRO", preco: 15, formula: "Q * C * $ ", unidade: "M"},
+            { codigo: "xvc", idX3D: "", nome: "MANIVELA /METRO", preco: 15, formula: "Q * C * $ ", unidade: "M"},
+            { codigo: "xvc", idX3D: "", nome: "TUBO GALV 2'", preco: 52, formula: "Q * C * $ ", unidade: "M"},
+            { codigo: "xvc", idX3D: "", nome: "METALON GALV BASE", preco: 15, formula: "Q * C * $ ", unidade: "M"},
+            { codigo: "xvc", idX3D: "", nome: "REBITE", preco: 0.5, formula: "Q * $", unidade: "UNID"},
+            { codigo: "xvc", idX3D: "", nome: "DISCO CORTE 14'", preco: 45, formula: "Q * $", unidade: "UNID"},
+            { codigo: "xvc", idX3D: "", nome: "DISCO CORTE LIXADEIRA", preco: 6, formula: "Q * $", unidade: "UNID"},
+            { codigo: "xvc", idX3D: "", nome: "DISCO DESBASTE LIXADEIRA", preco: 10.6, formula: "Q * $", unidade: "UNID"},
+        ],
+
+        "FIXAÇÃO": [
+            { codigo: "xvc", idX3D: "", nome: "PRESILHA PAREDE", preco: 5, formula: "Q * $", unidade: "UNID"},
+            { codigo: "xvc", idX3D: "", nome: "PRESILHA BASE TOLDO", preco: 8, formula: "Q * $", unidade: "UNID"},
+            { codigo: "xvc", idX3D: "", nome: "SUPORTE TUBO TOLDO", preco: 8, formula: "Q * $", unidade: "UNID"},
+            { codigo: "xvc", idX3D: "", nome: "PARAFUSO 1/4", preco: 0.8, formula: "Q * $", unidade: "UNID"},
+            { codigo: "xvc", idX3D: "", nome: "BUCLHA 10", preco: 0.25, formula: "Q * $", unidade: "UNID"},
+        ],
+
+        "PINTURA E ADESIVO": [
+            { codigo: "xvc", idX3D: "", nome: "TINTA SPLAY", preco: 18, formula: "Q * $", unidade: "UNID"},
+            { codigo: "xvc", idX3D: "", nome: "ADESIVO RECORTE", preco: 90, formula: "C * A * Q *$", unidade: "M²"},
+        ],
+
+        "MÃO DE OBRA": [
+            { codigo: "xvc", idX3D: "", nome: "TEMPO ATENDIMENTO", preco: 25, formula: "Q * $", unidade: "H" },
+            { codigo: "xvc", idX3D: "", nome: "TEMPO PRODUÇAO", preco: 25, formula: "Q * $", unidade: "H" },
+            { codigo: "xvc", idX3D: "", nome: "TEMPO DE INSTALAÇÃO", preco: 25, formula: "Q * $", unidade: "H" },
+            { codigo: "xvc", idX3D: "", nome: "ALMOÇO/LANCHE", preco: 40, formula: "Q * $", unidade: "UND" },
+            { codigo: "xvc", idX3D: "", nome: "FRETE", preco: 1.50, formula: "Q * $ * 2", unidade: "KM" },
+        ]
+    },
+};

@@ -1,0 +1,166 @@
+        /* ======= NOTIFICAÇÕES ======= */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: var(--border-radius);
+            color: white;
+            font-weight: 600;
+            z-index: 1002;
+            transform: translateX(400px);
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .notification.success {
+            background: #51ff00;
+        }
+
+        .notification.error {
+            background: #ff001e;
+        }
+
+        .notification.warning {
+            background: #f093fb;
+            color: white;
+        }
+
+        .notification.info {
+            background: #4facfe;
+        }
+
+        /* ======= NOTIFICAÇÕES ======= */
+        .notif {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            min-width: 300px;
+            max-width: 400px;
+            padding: 16px 20px;
+            border-radius: 8px;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 9999;
+            transform: translateX(400px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notif--show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        /* ======= TIPOS DE NOTIFICAÇÕES ======= */
+        .notif--info {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-left: 4px solid #1f5f8b;
+        }
+
+        .notif--success {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border-left: 4px solid #1e8449;
+        }
+
+        .notif--warning {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            border-left: 4px solid #d35400;
+            color: #2c3e50;
+        }
+
+        .notif--error {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border-left: 4px solid #922b21;
+        }
+
+        /* ======= ÍCONES ======= */
+        .notif::before {
+            font-size: 20px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .notif--info::before {
+            content: "ℹ";
+        }
+
+        .notif--success::before {
+            content: "✓";
+        }
+
+        .notif--warning::before {
+            content: "⚠";
+        }
+
+        .notif--error::before {
+            content: "✕";
+        }
+
+        /* ======= BOTÃO FECHAR ======= */
+        .notif__close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0.7;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: opacity 0.2s;
+        }
+
+        .notif__close:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ======= RESPONSIVO ======= */
+        @media (max-width: 480px) {
+            .notif {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                min-width: auto;
+                max-width: none;
+            }
+        }
+
+        /* ======= ANIMAÇÃO DE PULSO PARA ERROS ======= */
+        @keyframes notif-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+            }
+        }
+
+        .notif--error.notif--show {
+            animation: notif-pulse 1.5s ease-out;
+        }

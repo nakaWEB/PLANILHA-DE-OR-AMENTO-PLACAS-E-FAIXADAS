@@ -1,0 +1,447 @@
+// ======= FUNÇÃO DE IMPRESSÃO =======
+async function imprimirExcelCompleto() {
+    /* ---------- DADOS DO CLIENTE ---------- */
+    const cliente = {
+        nome: document.getElementById('cliente_nome')?.value || '',
+        endereco: document.getElementById('cliente_endereco')?.value || '',
+        telefone: document.getElementById('cliente_telefone')?.value || '',
+        data: document.getElementById('cliente_data')?.value || '',
+        servico: document.getElementById('cliente_servico')?.value || '',
+        numero: document.getElementById('cliente_numero')?.value || '',
+        funcionario: document.getElementById('cliente_funcionario')?.value || ''
+    };
+
+    /* ---------- PRODUTOS ---------- */
+    const produtos = [];
+    let subTotal = 0;
+    document.querySelectorAll('.planilha tbody tr').forEach(tr => {
+        const Q = parseFloat(tr.querySelector('.quantidade')?.value) || 0;
+        if (Q <= 0) return;
+
+        const cod = tr.cells[3]?.textContent.trim();
+        const descr = tr.cells[2]?.textContent.trim();
+        const pl = tr.cells[0]?.textContent.trim();
+        const unid = tr.cells[5]?.textContent.trim();
+        const comp = tr.querySelector('.comprimento')?.value || 0;
+        const alt = tr.querySelector('.largura')?.value || 0;
+        const vlr = parseFloat(tr.querySelector('.valor-total')?.textContent.replace(',', '.')) || 0;
+
+        produtos.push([cod, descr, pl, pl, pl, pl, pl, pl, unid, comp, alt, Q, vlr.toFixed(2).replace('.', ',')]);
+        subTotal += vlr;
+    });
+
+    const imposto = subTotal * 0.15;
+    const total = subTotal + imposto;
+    const aVista = total.toFixed(2).replace('.', ',');
+    const entrada = (total * 1.05 * 0.25).toFixed(2).replace('.', ',');
+    const aPrazo = (total * 1.05).toFixed(2).replace('.', ',');
+    const parcela = (total * 1.05 * 1.05 / 4).toFixed(2).replace('.', ',');
+
+    /* ---------- EXCELJS ---------- */
+    const wb = new ExcelJS.Workbook();
+    const ws = wb.addWorksheet('Orçamento');
+
+    /* ---------- MARGENS ESTREITAS ---------- */
+    ws.pageSetup = {
+        orientation: 'portrait',          // ou 'landscape'
+        fitToPage: true,                  // ajusta tudo numa única página
+        fitToWidth: 1,
+        fitToHeight: 0,                   // 0 = sem limite de altura
+        margins: {
+            left: 0.25,     // 0,25"
+            right: 0.25,
+            top: 0.3,
+            bottom: 0.3,
+            header: 0.1,
+            footer: 0.1
+        },
+        horizontalCentered: true,         // centraliza horizontalmente
+    };
+
+    ws.pageSetup = {
+        paperSize: 9,          // 9 = A4
+        orientation: 'portrait', // ou 'landscape'
+        fitToPage: true,
+        fitToWidth: 1,
+        fitToHeight: 0,
+        margins: {
+            left: 0.25,
+            right: 0.25,
+            top: 0.3,
+            bottom: 0.3,
+            header: 0.1,
+            footer: 0.1
+        }
+    };
+
+    /* ---------- ESTILOS REUTILIZÁVEIS ---------- */
+    const douradoCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFD700' } },
+    };
+
+    const pastelCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF8AF' } },
+    };
+
+    const peleCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEEC8' } }
+    };
+    const greenCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF00FF00' } }
+    };
+    const blueCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF0000FF' } }
+    };
+    const cinzaescuroCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'bfddf3' } }
+    };
+    const cinzaclaroCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFFF' } }
+    };
+
+    const cinzactCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFFF' } }
+    };
+
+    const cinzaetCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'bfddf3' } }
+    };
+
+    /* ---------- MONTAGEM DA PLANILHA ---------- */
+    ws.addRow([]);
+    ws.addRow(['CLIENTE', cliente.nome, '', '', '', '', '', 'FUNCIONÁRIO', '', cliente.funcionario]);
+    ws.addRow(['END.:', cliente.endereco]);
+    ws.addRow(['TEL.:', cliente.telefone, '', '', '', '', '', '', '', 'DATA', cliente.data]);
+    ws.addRow(['SERVIÇO:', cliente.servico, '', '', '', '', '', '', '', 'NOTA Nº']);
+    ws.addRow([]);
+    ws.addRow(['FUNCIONÁRIOS ENVOLVIDOS:']);
+    ws.addRow([]);
+
+    /* ---------- CABEÇALHO DOURADO ---------- */
+    const headerRow = ['COD', '', 'MATERIAL', '', '', '', '', '', 'UNID', 'COMP', 'ALTURA', 'QUANT', 'V. TOTAL'];
+    ws.addRow(headerRow);
+
+    /* ---------- PRODUTOS ---------- */
+    produtos.forEach(p => ws.addRow(p));
+
+    /* ---------- PREENCHE ATÉ LINHA 57 ---------- */
+    while (ws.rowCount < 57) ws.addRow([]);
+
+    /* ---------- TOTAIS ---------- */
+    ws.addRow(['', '', '', 'IMPOSTO', '', '', '', '15%', `R$ ${imposto.toFixed(2).replace('.', ',')}`]);
+    ws.addRow([]);
+    ws.addRow(['', '', '', '', 'PIX', 'CHEQUE', 'DINHEIRO', 'CARTÃO','ANOTAR', 'V.TOTAL']);
+    ws.addRow(['', '', 'VALOR', 'A VISTA', '', '', '', '','', `R$ ${aVista}`]);
+    ws.addRow(['', '', '1', 'ENTRADA', '', '', '', '','', `R$ ${entrada}`]);
+    ws.addRow(['', '', 'VALOR', 'A PRAZO', '', '', '', '','', `R$ ${aPrazo}`]);
+    ws.addRow(['', '', '3', 'PARCELAs', '', '', '', '','', `R$ ${parcela}`]);
+    ws.getColumn('H').alignment = { horizontal: 'left' };
+    ws.getColumn('J').alignment = { horizontal: 'right' };
+
+
+    const movimentos = [
+
+        // recortar celulas de C10 a C37                
+        { de: 'C10', para: 'L1' }, { de: 'C12', para: 'L1' }, { de: 'C13', para: 'L1' },
+        { de: 'C14', para: 'L1' }, { de: 'C15', para: 'L1' }, { de: 'C16', para: 'L1' }, { de: 'C17', para: 'L1' },
+        { de: 'C18', para: 'L1' }, { de: 'C19', para: 'L1' }, { de: 'C20', para: 'L1' }, { de: 'C21', para: 'L1' },
+        { de: 'C22', para: 'L1' }, { de: 'C23', para: 'L1' }, { de: 'C24', para: 'L1' }, { de: 'C25', para: 'L1' },
+        { de: 'C26', para: 'L1' }, { de: 'C27', para: 'L1' }, { de: 'C28', para: 'L1' }, { de: 'C29', para: 'L1' },
+        { de: 'C30', para: 'L1' }, { de: 'C31', para: 'L1' }, { de: 'C32', para: 'L1' }, { de: 'C33', para: 'L1' },
+        { de: 'C34', para: 'L1' }, { de: 'C35', para: 'L1' }, { de: 'C36', para: 'L1' }, { de: 'C37', para: 'L1' },
+        { de: 'C34', para: 'L1' }, { de: 'C38', para: 'L1' }, { de: 'C39', para: 'L1' }, { de: 'C40', para: 'L1' },
+
+        // recortar celulas de D10 a D37
+        { de: 'D11', para: 'L1' },
+        { de: 'D12', para: 'L1' },
+        { de: 'D13', para: 'L1' },
+        { de: 'D14', para: 'L1' },
+        { de: 'D15', para: 'L1' },
+        { de: 'D16', para: 'L1' },
+        { de: 'D17', para: 'L1' },
+        { de: 'D18', para: 'L1' },
+        { de: 'D19', para: 'L1' },
+        { de: 'D20', para: 'L1' },
+        { de: 'D21', para: 'L1' },
+        { de: 'D22', para: 'L1' },
+        { de: 'D23', para: 'L1' },
+        { de: 'D24', para: 'L1' },
+        { de: 'D25', para: 'L1' },
+        { de: 'D26', para: 'L1' },
+        { de: 'D27', para: 'L1' },
+        { de: 'D28', para: 'L1' },
+        { de: 'D29', para: 'L1' },
+        { de: 'D30', para: 'L1' },
+        { de: 'D31', para: 'L1' },
+        { de: 'D32', para: 'L1' },
+        { de: 'D33', para: 'L1' },
+        { de: 'D34', para: 'L1' },
+        { de: 'D35', para: 'L1' },
+        { de: 'D36', para: 'L1' },
+        { de: 'D37', para: 'L1' },
+
+        // recorte celulas E
+        { de: 'E10', para: 'L1' },
+        { de: 'E11', para: 'L1' }, { de: 'E12', para: 'L1' }, { de: 'E13', para: 'L1' },
+        { de: 'E14', para: 'L1' }, { de: 'E15', para: 'L1' }, { de: 'E16', para: 'L1' },
+        { de: 'E17', para: 'L1' }, { de: 'E18', para: 'L1' }, { de: 'E19', para: 'L1' },
+        { de: 'E20', para: 'L1' }, { de: 'E21', para: 'L1' }, { de: 'E22', para: 'L1' },
+        { de: 'E23', para: 'L1' }, { de: 'E24', para: 'L1' }, { de: 'E25', para: 'L1' },
+        { de: 'E26', para: 'L1' }, { de: 'E27', para: 'L1' }, { de: 'E28', para: 'L1' },
+        { de: 'E29', para: 'L1' }, { de: 'E30', para: 'L1' }, { de: 'E31', para: 'L1' },
+        { de: 'E32', para: 'L1' }, { de: 'E33', para: 'L1' }, { de: 'E34', para: 'L1' },
+        { de: 'E35', para: 'L1' }, { de: 'E36', para: 'L1' }, { de: 'E37', para: 'L1' },
+
+
+        //recorte celulas H
+        { de: 'H41', para: 'L1' }, { de: 'H42', para: 'L1' }, { de: 'H43', para: 'L1' },
+        { de: 'H44', para: 'L1' }, { de: 'H45', para: 'L1' }, { de: 'H39', para: 'L1' },
+
+        // recortar celulas especificas do cabeçalho
+
+        { de: 'C2', para: 'L1' }, { de: 'D2', para: 'L1' }, { de: 'E2', para: 'L1' }, { de: 'B7', para: 'L1' },
+        { de: 'C5', para: 'L1' }, { de: 'D5', para: 'L1' }, { de: 'E5', para: 'L1' }, { de: 'F5', para: 'L1' },
+        { de: 'C3', para: 'L1' }, { de: 'C4', para: 'L1' }, { de: 'L2', para: 'L1' }, { de: 'G7', para: 'L1' },
+        { de: 'E7', para: 'L1' }, { de: 'I2', para: 'L1' }, { de: 'E7', para: 'L1' }, { de: 'B9', para: 'L1' },
+        { de: 'C11', para: 'L1' }, { de: 'D11', para: 'L1' }, { de: 'D10', para: 'L1' },
+    ];
+
+    /* ---------- COPIA/RECORTE MANUAL ---------- */
+    function copiarCel(origem, destino, recortar = false) {
+        const [o, d] = [ws.getCell(origem), ws.getCell(destino)];
+        d.value = o.value;
+        d.style = o.style;          // copia preenchimento, bordas, alinhamento...
+        d.numFmt = o.numFmt;
+        if (recortar) o.value = null; // limpa origem
+    }
+
+    /* ---------- EXECUTA OS MOVIMENTOS ---------- */
+    movimentos.forEach(({ de, para }) => copiarCel(de, para, true));
+
+    /* ---------- CÉLULAS COLORIDAS ---------- */
+    headerRow.forEach((_, i) => ws.getCell(9, i + 1).style = douradoCell);
+
+    /* ---------- CORES ZEBRADAS (sem sobrescrever alignment) ---------- */
+    for (let row = 10; row <= 58; row++) {
+        const style = row % 2 === 0 ? cinzaclaroCell : cinzaescuroCell;
+        headerRow.forEach((_, i) => Object.assign(ws.getCell(row, i + 1).style, style));
+    }
+
+    /* ---------- ALINHAMENTO FINAL ---------- */
+    ['A', 'B', 'C', 'D'].forEach(c => ws.getColumn(c).alignment = { horizontal: 'left' });
+    ['I', 'J', 'K', 'L', 'M'].forEach(c => ws.getColumn(c).alignment = { horizontal: 'center' });
+
+    ['A', 'B', 'C', 'D', 'E', 'H'].forEach(col =>
+        headerRow.forEach((_, i) => ws.getCell(58, i + 1).style = cinzaescuroCell)
+    );
+
+    headerRow.forEach((_, i) => ws.getCell(59, i + 1).style = cinzaclaroCell);
+
+    headerRow.forEach((_, i) => ws.getCell(60, i + 1).style = pastelCell);
+
+    headerRow.forEach((_, i) => ws.getCell(61, i + 1).style = peleCell);
+
+    headerRow.forEach((_, i) => ws.getCell(62, i + 1).style = pastelCell);
+
+    headerRow.forEach((_, i) => ws.getCell(63, i + 1).style = peleCell);
+
+    headerRow.forEach((_, i) => ws.getCell(64, i + 1).style = pastelCell);
+
+
+
+    function copiarCel(origem, destino, recortar = false) {
+        const [o, d] = [ws.getCell(origem), ws.getCell(destino)];
+        d.value = o.value;
+        d.style = o.style;          // copia preenchimento, bordas, alinhamento...
+        d.numFmt = o.numFmt;
+        if (recortar) o.value = null; // limpa origem
+    }
+    /* ---------- ESTILO: APENAS BORDA PRETA ---------- */
+    const bordaPretaFUNDO = {
+        border: {
+            top: { style: 'thin', color: { argb: 'FFFFFF' } },//SIMA
+            left: { style: 'thin', color: { argb: 'FFFFFF' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: 'FFFFFF' } } //DIREITA
+        }
+    };
+
+    const bordaPretaFUNDOd = {
+        border: {
+            top: { style: 'thin', color: { argb: 'FFFFD700' } },//SIMA
+            left: { style: 'thin', color: { argb: 'FFFFD700' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: 'FFFFD700' } } //DIREITA
+        }
+    };
+
+    const bordaPretaFUNDOce = {
+        border: {
+            top: { style: 'thin', color: { argb: 'bfddf3' } },//SIMA
+            left: { style: 'thin', color: { argb: 'bfddf3' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: 'bfddf3' } } //DIREITA
+        }
+    };
+
+    const bordaPretaTOPO_FUNDO = {
+        border: {
+            top: { style: 'thin', color: { argb: '000000' } },//SIMA
+            left: { style: 'thin', color: { argb: 'FFFFFF' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: 'FFFFFF' } } //DIREITA
+        }
+    };
+
+    const bordaPretaFINAL_DIREITA = {
+        border: {
+            top: { style: 'thin', color: { argb: '000000' } },//SIMA
+            left: { style: 'thin', color: { argb: 'FFFFFF' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: '000000' } } //DIREITA
+        }
+    };
+
+    const bordaPretaCOMPLETO = {
+        border: {
+            top: { style: 'thin', color: { argb: '000000' } },//SIMA
+            left: { style: 'thin', color: { argb: '000000' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: '000000' } } //DIREITA
+        }
+    };
+
+    const bordaPretaFINAL_ESQUERDA = {
+        border: {
+            top: { style: 'thin', color: { argb: '000000' } },//SIMA
+            left: { style: 'thin', color: { argb: '000000' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: 'FFFFFF' } } //DIREITA
+        }
+    };
+
+
+
+    /* ---------- APLICANDO EM UMA CÉLULA ESPECÍFICA ---------- */
+    // linha 1 
+    ['A', 'B', 'C', 'D', 'F', 'G', 'E', 'H', 'I', 'J', 'K', 'L', 'M'].forEach(col =>
+        Object.assign(ws.getCell(`${col}1`).style, bordaPretaFUNDO)
+    );
+
+    // linha 2
+    ['B', 'C', 'D', 'E', 'F', 'G', 'J', 'K'].forEach(col =>
+        Object.assign(ws.getCell(`${col}2`).style, bordaPretaFUNDO)
+    );
+
+    // lInha 3
+    ['B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'].forEach(col =>
+        Object.assign(ws.getCell(`${col}3`).style, bordaPretaFUNDO)
+    );
+
+    // linha 4
+    ['B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M'].forEach(col =>
+        Object.assign(ws.getCell(`${col}4`).style, bordaPretaTOPO_FUNDO)
+    );
+
+    // linha 5
+    ['B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M'].forEach(col =>
+        Object.assign(ws.getCell(`${col}5`).style, bordaPretaTOPO_FUNDO)
+    );
+
+    // linha 7
+    ['B'].forEach(col =>
+        Object.assign(ws.getCell(`${col}7`).style, bordaPretaTOPO_FUNDO),
+    );
+
+    ['A', 'B', 'C', 'D', 'E', 'H'].forEach(col =>
+        Object.assign(ws.getCell(`${col}9`).style, bordaPretaFUNDOd)
+    );
+
+    // linha 58
+    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'].forEach(col =>
+        Object.assign(ws.getCell(`${col}58`).style, bordaPretaFUNDOce)
+    );
+
+    // linha 41
+    ['C', 'D', 'E', 'F', 'G'].forEach(col =>
+        Object.assign(ws.getCell(`${col}60`).style, bordaPretaCOMPLETO)
+    );
+
+    // linha 42
+    ['C', 'D', 'E', 'F', 'G'].forEach(col =>
+        Object.assign(ws.getCell(`${col}61`).style, bordaPretaCOMPLETO)
+    );
+
+    // linha 43
+    ['C', 'D', 'E', 'F', 'G'].forEach(col =>
+        Object.assign(ws.getCell(`${col}62`).style, bordaPretaCOMPLETO)
+    );
+
+    // linha 44
+    ['C', 'D', 'E', 'F', 'G'].forEach(col =>
+        Object.assign(ws.getCell(`${col}63`).style, bordaPretaCOMPLETO)
+    );
+
+    // linha 64
+    ['C', 'D', 'E', 'F', 'G'].forEach(col =>
+        Object.assign(ws.getCell(`${col}64`).style, bordaPretaCOMPLETO)
+    );
+
+
+    Object.assign(ws.getCell('A2').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('A3').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('A4').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('A5').style, bordaPretaCOMPLETO);
+
+    Object.assign(ws.getCell('B60').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('B61').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('B62').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('B63').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('B64').style, bordaPretaCOMPLETO);
+
+    Object.assign(ws.getCell('A7').style, bordaPretaFINAL_ESQUERDA);
+    Object.assign(ws.getCell('C7').style, bordaPretaFINAL_DIREITA);
+
+    Object.assign(ws.getCell('H2').style, bordaPretaFINAL_ESQUERDA);
+
+    Object.assign(ws.getCell('J5').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('J4').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('I2').style, bordaPretaFINAL_DIREITA);
+    Object.assign(ws.getCell('G60').style, bordaPretaFINAL_ESQUERDA);
+    Object.assign(ws.getCell('G61').style, bordaPretaFINAL_ESQUERDA);
+    Object.assign(ws.getCell('G62').style, bordaPretaFINAL_ESQUERDA);
+    Object.assign(ws.getCell('G63').style, bordaPretaFINAL_ESQUERDA);
+    Object.assign(ws.getCell('G64').style, bordaPretaFINAL_ESQUERDA);
+
+    Object.assign(ws.getCell('H60').style, bordaPretaFINAL_DIREITA);
+    Object.assign(ws.getCell('H61').style, bordaPretaFINAL_DIREITA);
+    Object.assign(ws.getCell('H62').style, bordaPretaFINAL_DIREITA);
+    Object.assign(ws.getCell('H63').style, bordaPretaFINAL_DIREITA);
+    Object.assign(ws.getCell('H64').style, bordaPretaFINAL_DIREITA);
+
+    Object.assign(ws.getCell('L2').style, bordaPretaTOPO_FUNDO)
+    Object.assign(ws.getCell('L3').style, bordaPretaTOPO_FUNDO)
+    Object.assign(ws.getCell('L4').style, bordaPretaTOPO_FUNDO)
+    Object.assign(ws.getCell('L5').style, bordaPretaTOPO_FUNDO)
+
+    Object.assign(ws.getCell('M2').style, bordaPretaFINAL_DIREITA)
+    Object.assign(ws.getCell('M3').style, bordaPretaFINAL_DIREITA)
+    Object.assign(ws.getCell('M4').style, bordaPretaFINAL_DIREITA)
+    Object.assign(ws.getCell('M5').style, bordaPretaFINAL_DIREITA)
+
+    // faixa de A9 até J64
+    ws.eachRow({ includeEmpty: false }, (row, rowNumber) => {
+        if (rowNumber >= 1 && rowNumber <= 64) {
+            row.eachCell({ includeEmpty: false }, cell => {
+                cell.font = { size: 10, name: 'Calibri' };
+            });
+        }
+    });
+
+
+
+    /* ---------- SALVA O ARQUIVO ---------- */
+    const buffer = await wb.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    saveAs(blob, `ORCAMENTO_${cliente.nome.replace(/\s+/g, '_')}.xlsx`);
+}
