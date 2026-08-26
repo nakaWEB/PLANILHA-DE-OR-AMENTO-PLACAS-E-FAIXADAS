@@ -77,6 +77,8 @@ let catalogoProdutos = {
             { codigo: "3184031100", idX3D: "", nome: "TEMPO DE INSTALAÇÃO", preco: 25, formula: "Q * $", unidade: "H" },
             { codigo: "3967958742", idX3D: "", nome: "ALMOÇO/LANCHE", preco: 40, formula: "Q * $", unidade: "UND" },
             { codigo: "2957524448", idX3D: "", nome: "FRETE", preco: 1.50, formula: "Q * $ * 2", unidade: "KM" },
+            { codigo: "2523", idX3D: "", nome: "VALOR PARA ARREDONDAR", preco: 1, formula: "Q * $", unidade: "R$" },
+            { codigo: "2523", idX3D: "", nome: "TAXA DE URGENCIA", preco: 0.05, formula: "Q * $", unidade: "R$" },
         ]
     },
 
@@ -120,6 +122,8 @@ let catalogoProdutos = {
             { codigo: "4232746688", idX3D: "", nome: "TEMPO DE INSTALAÇÃO", preco: 25, formula: "Q * $", unidade: "H" },
             { codigo: "2774299551", idX3D: "", nome: "ALMOÇO/LANCHE", preco: 40, formula: "Q * $", unidade: "UND" },
             { codigo: "699294314", idX3D: "", nome: "FRETE", preco: 1.50, formula: "Q * $ * 2", unidade: "KM" },
+            { codigo: "2523", idX3D: "", nome: "VALOR PARA ARREDONDAR", preco: 1, formula: "Q * $", unidade: "R$" },
+            { codigo: "2523", idX3D: "", nome: "TAXA DE URGENCIA", preco: 0.05, formula: "Q * $", unidade: "R$" },
         ]
     },
 
@@ -163,6 +167,8 @@ let catalogoProdutos = {
             { codigo: "809915396", idX3D: "", nome: "TEMPO DE INSTALAÇÃO", preco: 25, formula: "Q * $", unidade: "H" },
             { codigo: "3703031178", idX3D: "", nome: "ALMOÇO/LANCHE", preco: 40, formula: "Q * $", unidade: "UND" },
             { codigo: "1444185262", idX3D: "", nome: "FRETE", preco: 1.50, formula: "Q * $ * 2", unidade: "KM" },
+            { codigo: "2523", idX3D: "", nome: "VALOR PARA ARREDONDAR", preco: 1, formula: "Q * $", unidade: "R$" },
+            { codigo: "2523", idX3D: "", nome: "TAXA DE URGENCIA", preco: 0.05, formula: "Q * $", unidade: "R$" },
         ]
     },
 
