@@ -510,7 +510,8 @@ let catalogoProdutos = {
         { codigo: "3043", idX3D: "2600884", nome: "TEMPO PRODUÇÃO MÓVEIS", preco: 25.00, formula: "Q * $", unidade: "H" },
         { codigo: "1345", idX3D: "2600884", nome: "TEMPO INSTALAÇÃO MÓVEIS", preco: 25.00, formula: "Q * $", unidade: "H" },
         { codigo: "3297", idX3D: "2600884", nome: "TEMPO PRODUÇÃO PRESTAÇÃO DE SERVIÇO", preco: 16.00, formula: "Q * $", unidade: "H" },
-        { codigo: "2523", idX3D: "", nome: "VALOR PARA ARREDONDAR", preco: 1, formula: "Q * $", unidade: "UNID" },
+        { codigo: "2523", idX3D: "", nome: "VALOR PARA ARREDONDAR", preco: 1, formula: "Q * $", unidade: "R$" },
+        { codigo: "2523", idX3D: "", nome: "TAXA DE URGENCIA", preco: 0.05, formula: "Q * $", unidade: "R$" },
     ],
 };
 
