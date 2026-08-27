@@ -211,6 +211,8 @@ let catalogoProdutos = {
     "ACM FUNDO": {
         "ACMs": [
             { codigo: "91765", idX3D: "1445", nome: "ACM COR BRILHO FUNDO PLACA", preco: 200.00, formula: "C * A * Q * $", unidade: "M²" },
+            { codigo: "91765g", idX3D: "", nome: "ACM BRILHO FUNDO PLACA PROMO.", preco: 150.00, formula: "C * A * Q * $", unidade: "M²" },
+            { codigo: "91765g", idX3D: "", nome: "ACM VELHO RETO.", preco: 100.00, formula: "C * A * Q * $", unidade: "M²" },
             { codigo: "59635", idX3D: "2600865", nome: "ACM DARK GREY", preco: 250.00, formula: "C * A * Q * $", unidade: "M²" },
             { codigo: "10026", idX3D: "2601049", nome: "ACM FUNDO FACHADA", preco: 350.00, formula: "C * A * Q * $", unidade: "M²" },
             { codigo: "93195", idX3D: "960", nome: "ACM MADEIRA", preco: 360.00, formula: "C * A * Q * $", unidade: "M²" },
