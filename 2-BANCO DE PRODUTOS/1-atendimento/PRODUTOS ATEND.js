@@ -361,11 +361,10 @@ let catalogoProdutos = {
             { codigo: "3966516969", idX3D: "2600884", nome: "TEMPO ATENDIMENTO", preco: 25, formula: "Q * $", unidade: "H" },
             { codigo: "584724555", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - LORENA", preco: 50.00, formula: "Q * $", unidade: "H" },
             { codigo: "3744633669", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - EDUARDA", preco: 50.00, formula: "Q * $", unidade: "H" },
-            { codigo: "1989466401", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - DANI", preco: 50.00, formula: "Q * $", unidade: "H" },
+            { codigo: "1989466401", idX3D: "268", nome: "TEMPO DE DESIGNER E ARQUIVOS - DANI", preco: 50.00, formula: "Q * $", unidade: "H" },
             { codigo: "2664452927", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - MAICON", preco: 50.00, formula: "Q * $", unidade: "H" },
-            { codigo: "2006889900", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - ALICE", preco: 50.00, formula: "Q * $", unidade: "H" },
+            { codigo: "2006889900", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - CAROL", preco: 50.00, formula: "Q * $", unidade: "H" },
             { codigo: "389465763", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - MARIA EDUARDA", preco: 50.00, formula: "Q * $", unidade: "H" },
-            { codigo: "4192081751", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - KARINA", preco: 50.00, formula: "Q * $", unidade: "H" },
             { codigo: "2315161321", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS -", preco: 50.00, formula: "Q * $", unidade: "H" },
         ],
 
@@ -992,8 +991,9 @@ function initializeInterface() {
                             <td class="clicavel"></td>
                             <td id="linha2"></td>
                         </tr>
+
                         <tr>
-                            <td>ENTRADA</td>
+                            <td>A PRAZO</td>
                             <td class="clicavel"></td>
                             <td class="clicavel"></td>
                             <td class="clicavel"></td>
@@ -1002,22 +1002,29 @@ function initializeInterface() {
                             <td id="linha3"></td>
                         </tr>
                         <tr>
-                            <td>A PRAZO</td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td id="linha4"></td>
+                            <td style="backdrop-filter: none; border: rgba(0, 56, 112, 0); background: rgba(0, 56, 112, 0);" class="clicavel"></td>
+                            <td style="backdrop-filter: none; border: rgba(0, 56, 112, 0); background: rgba(0, 56, 112, 0);" class="clicavel"></td>
+                            <td style="backdrop-filter: none; border: rgba(0, 56, 112, 0); background: rgba(0, 56, 112, 0);" class="clicavel"></td>
+                            <td style="backdrop-filter: none; border: rgba(0, 56, 112, 0); background: rgba(0, 56, 112, 0);" class="clicavel"></td>
+                            <td style="backdrop-filter: none; border: rgba(0, 56, 112, 0); background: rgba(0, 56, 112, 0);" class="clicavel"></td>
                         </tr>
                         <tr>
-                            <td>PARCELAS</td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td id="linha5"></td>
+                            <td>A VISTA</td>
+                            <td>ENTRADA 30%</td>
+                            <td id="30AV"></td>
+                            <td></td>
+                            <td></td>
+                            <td>RESTANTE 70%</td>
+                            <td id="70AV"></td>
+                        </tr>
+                        <tr>
+                            <td>A PRAZO</td>
+                            <td>ENTRADA 30%</td>
+                            <td id="30AP"></td>
+                            <td></td>
+                            <td></td>
+                            <td>RESTANTE 70%</td>
+                            <td id="70AP"></td>
                         </tr>
                     </table>
                 `;
@@ -1454,54 +1461,40 @@ function updateCategoryFilter() {
 }
 
 function atualizarTotalGeral() {
+    const categorias = Object.keys(catalogoProdutos);
     const tabelaGeral = document.querySelector("#tabela-total-geral tbody");
     if (!tabelaGeral) return;
 
     tabelaGeral.innerHTML = "";
     let somaGeral = 0;
 
-    // Itera sobre todas as páginas/categorias
-    document.querySelectorAll('.pagina').forEach((pagina, index) => {
-        const nomePagina = nomesPaginas[index];
-        if (!nomePagina || nomePagina === "CLIENTE" || nomePagina === "ORÇAMENTO" || nomePagina === "TOTAL GERAL") return;
 
-        let soma = 0;
-
-        // Soma todos os valores-total da página (incluindo dentro de cápsulas)
-        pagina.querySelectorAll(".valor-total").forEach(v => {
-            soma += parseFloat(v.textContent.replace(',', '.')) || 0;
-        });
-
-        if (soma > 0) {
+    categorias.forEach(cat => {
+        const indice = nomesPaginas.indexOf(cat);
+        if (indice >= 0) {
+            const pagina = document.querySelectorAll('.pagina')[indice];
+            const valores = pagina.querySelectorAll(".valor-total");
+            let soma = 0;
+            valores.forEach(v => soma += parseFloat(v.textContent.replace(',', '.')) || 0);
             somaGeral += soma;
-            tabelaGeral.innerHTML += `
-                <tr>
-                    <td><i class="fas fa-folder"></i> ${nomePagina}</td>
-                    <td>R$ ${soma.toFixed(2).replace('.', ',')}</td>
-                </tr>
-            `;
+            tabelaGeral.innerHTML += `<tr><td><i class="fas fa-folder"></i> ${cat}</td><td>R$ ${soma.toFixed(2).replace('.', ',')}</td></tr>`;
         }
     });
 
-    const imposto = somaGeral * 0.14;
-    tabelaGeral.innerHTML += `
-        <tr style="background: var (--barra-imposto)">
+    const imposto = somaGeral * 0.15;
+    tabelaGeral.innerHTML += `<tr style="background: var(--barra-imposto);">
             <td><strong><i class="fas fa-receipt"></i> IMPOSTO</strong></td>
             <td><strong>R$ ${imposto.toFixed(2).replace('.', ',')}</strong></td>
-        </tr>
-    `;
-
+        </tr>`;
     const totalComImposto = somaGeral + imposto;
 
-    const linha2 = document.getElementById("linha2");
-    const linha3 = document.getElementById("linha3");
-    const linha4 = document.getElementById("linha4");
-    const linha5 = document.getElementById("linha5");
+    document.getElementById("linha2").textContent = "R$ " + totalComImposto.toFixed(2).replace('.', ',');
+    document.getElementById("linha3").textContent = "R$ " + (totalComImposto * 0.05 + totalComImposto).toFixed(2).replace('.', ',');
+    document.getElementById("30AV").textContent = "R$ " + (totalComImposto * 0.30).toFixed(2).replace('.', ',');
+    document.getElementById("70AV").textContent = "R$ " + (totalComImposto * 0.70).toFixed(2).replace('.', ',');
 
-    if (linha2) linha2.textContent = "R$ " + totalComImposto.toFixed(2).replace('.', ',');
-    if (linha3) linha3.textContent = "R$ " + ((totalComImposto * 0.05 + totalComImposto) / 4).toFixed(2).replace('.', ',');
-    if (linha4) linha4.textContent = "R$ " + (totalComImposto * 0.05 + totalComImposto).toFixed(2).replace('.', ',');
-    if (linha5) linha5.textContent = "R$ " + ((totalComImposto * 0.05 + totalComImposto) / 4).toFixed(2).replace('.', ',');
+    document.getElementById("30AP").textContent = "R$ " + ((totalComImposto * 0.05 + totalComImposto) * 0.30).toFixed(2).replace('.', ',');
+    document.getElementById("70AP").textContent = "R$ " + ((totalComImposto * 0.05 + totalComImposto) * 0.70).toFixed(2).replace('.', ',');
 }
 
 /* ----------  SALVA DIRETO EM C:\Users\As informática\Downloads\orçamentos  ---------- */
@@ -1680,7 +1673,7 @@ async function exportarExcelCompleto() {
 
 
 
-// ======= FUNÇÃO DE IMPRESSÃO=======
+// ======= FUNÇÃO DE IMPRESSÃO =======
 async function imprimirExcelCompleto() {
     /* ---------- DADOS DO CLIENTE ---------- */
     const cliente = {
@@ -1693,111 +1686,33 @@ async function imprimirExcelCompleto() {
         funcionario: document.getElementById('cliente_funcionario')?.value || ''
     };
 
-    /* ---------- PRODUTOS - COM COMPONENTES SEPARADOS ---------- */
+    /* ---------- PRODUTOS ---------- */
     const produtos = [];
     let subTotal = 0;
-
     document.querySelectorAll('.planilha tbody tr').forEach(tr => {
         const Q = parseFloat(tr.querySelector('.quantidade')?.value) || 0;
         if (Q <= 0) return;
 
-        const cod = tr.cells[1]?.textContent.trim();
+        const cod = tr.cells[3]?.textContent.trim();
         const descr = tr.cells[2]?.textContent.trim();
+        const pl = tr.cells[0]?.textContent.trim();
         const unid = tr.cells[5]?.textContent.trim();
         const comp = tr.querySelector('.comprimento')?.value || 0;
         const alt = tr.querySelector('.largura')?.value || 0;
         const vlr = parseFloat(tr.querySelector('.valor-total')?.textContent.replace(',', '.')) || 0;
 
-        // Verifica se é produto composto
-        const isComposto = tr.classList.contains("produto-composto");
-
-        if (isComposto) {
-            // === PRODUTO COMPOSTO: mostra COMPONENTES separados ===
-            let produtoBanco = null;
-            for (const categoria in catalogoProdutos) {
-                const grupo = catalogoProdutos[categoria];
-                if (typeof grupo === "object" && !Array.isArray(grupo)) {
-                    for (const sub in grupo) {
-                        produtoBanco = grupo[sub].find(p => p.codigo === cod);
-                        if (produtoBanco) break;
-                    }
-                } else {
-                    produtoBanco = grupo.find(p => p.codigo === cod);
-                }
-                if (produtoBanco) break;
-            }
-
-            if (produtoBanco && produtoBanco.componentes && produtoBanco.componentes.length > 0) {
-                produtoBanco.componentes.forEach(comp => {
-                    // Ignora componentes que começam com "ML" (margem de lucro)
-                    if (comp.codigo && comp.codigo.startsWith("ML")) return;
-
-                    const valorComp = comp.preco * Q;
-                    // ✅ CORRIGIDO: 13 colunas alinhadas com o cabeçalho
-                    produtos.push([
-                        comp.codigo,              // [0]  → A (COD)
-                        '',                       // [1]  → B (vazio)
-                        comp.nome,                // [2]  → C (MATERIAL)
-                        '',                       // [3]  → D (vazio)
-                        '',                       // [4]  → E (vazio)
-                        '',                       // [5]  → F (vazio)
-                        '',                       // [6]  → G (vazio)
-                        '',                       // [7]  → H (vazio)
-                        comp.unidade || "UNID",   // [8]  → I (UNID)
-                        '',                       // [9]  → J (COMP - vazio p/ composto)
-                        '',                       // [10] → K (ALTURA - vazio p/ composto)
-                        Q,                        // [11] → L (QUANT)
-                        valorComp.toFixed(2).replace('.', ',')  // [12] → M (V.TOTAL)
-                    ]);
-                    subTotal += valorComp;
-                });
-            } else {
-                // Fallback: se não encontrou componentes, mostra o produto normal
-                produtos.push([
-                    cod,              // [0]  → A (COD)
-                    '',               // [1]  → B (vazio)
-                    descr,            // [2]  → C (MATERIAL)
-                    '',               // [3]  → D (vazio)
-                    '',               // [4]  → E (vazio)
-                    '',               // [5]  → F (vazio)
-                    '',               // [6]  → G (vazio)
-                    '',               // [7]  → H (vazio)
-                    unid,             // [8]  → I (UNID)
-                    comp,             // [9]  → J (COMP)
-                    alt,              // [10] → K (ALTURA)
-                    Q,                // [11] → L (QUANT)
-                    vlr.toFixed(2).replace('.', ',')  // [12] → M (V.TOTAL)
-                ]);
-                subTotal += vlr;
-            }
-        } else {
-            // === PRODUTO NORMAL: mostra diretamente ===
-            // ✅ CORRIGIDO: 13 colunas alinhadas com o cabeçalho
-            produtos.push([
-                cod,              // [0]  → A (COD)
-                '',               // [1]  → B (vazio)
-                descr,            // [2]  → C (MATERIAL)
-                '',               // [3]  → D (vazio)
-                '',               // [4]  → E (vazio)
-                '',               // [5]  → F (vazio)
-                '',               // [6]  → G (vazio)
-                '',               // [7]  → H (vazio)
-                unid,             // [8]  → I (UNID)
-                comp,             // [9]  → J (COMP)
-                alt,              // [10] → K (ALTURA)
-                Q,                // [11] → L (QUANT)
-                vlr.toFixed(2).replace('.', ',')  // [12] → M (V.TOTAL)
-            ]);
-            subTotal += vlr;
-        }
+        produtos.push([cod, descr, pl, pl, pl, pl, pl, pl, unid, comp, alt, Q, vlr.toFixed(2).replace('.', ',')]);
+        subTotal += vlr;
     });
 
-    const imposto = subTotal * 0.14;
+    const imposto = subTotal * 0.15;
     const total = subTotal + imposto;
     const aVista = total.toFixed(2).replace('.', ',');
-    const entrada = (total * 1.05 * 0.25).toFixed(2).replace('.', ',');
     const aPrazo = (total * 1.05).toFixed(2).replace('.', ',');
-    const parcela = (total * 1.05 / 4).toFixed(2).replace('.', ',');
+    const entradaAP = (total * 1.05 * 0.30).toFixed(2).replace('.', ',');
+    const restanteAP = (total * 1.05 * 0.70).toFixed(2).replace('.', ',');
+    const entradaAV = (total * 0.30).toFixed(2).replace('.', ',');
+    const restanteAV = (total * 0.70).toFixed(2).replace('.', ',');
 
     /* ---------- EXCELJS ---------- */
     const wb = new ExcelJS.Workbook();
@@ -1805,8 +1720,24 @@ async function imprimirExcelCompleto() {
 
     /* ---------- MARGENS ESTREITAS ---------- */
     ws.pageSetup = {
-        paperSize: 9,
-        orientation: 'portrait',
+        orientation: 'portrait',          // ou 'landscape'
+        fitToPage: true,                  // ajusta tudo numa única página
+        fitToWidth: 1,
+        fitToHeight: 0,                   // 0 = sem limite de altura
+        margins: {
+            left: 0.25,     // 0,25"
+            right: 0.25,
+            top: 0.3,
+            bottom: 0.3,
+            header: 0.1,
+            footer: 0.1
+        },
+        horizontalCentered: true,         // centraliza horizontalmente
+    };
+
+    ws.pageSetup = {
+        paperSize: 9,          // 9 = A4
+        orientation: 'portrait', // ou 'landscape'
         fitToPage: true,
         fitToWidth: 1,
         fitToHeight: 0,
@@ -1823,27 +1754,34 @@ async function imprimirExcelCompleto() {
     /* ---------- ESTILOS REUTILIZÁVEIS ---------- */
     const douradoCell = {
         fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFD700' } },
-        font: { bold: true, size: 10, name: 'Calibri', color: { argb: '000000' } }
     };
 
     const pastelCell = {
         fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFF8AF' } },
-        font: { size: 10, name: 'Calibri', color: { argb: '000000' } }
     };
 
     const peleCell = {
-        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEEC8' } },
-        font: { size: 10, name: 'Calibri', color: { argb: '000000' } }
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFEEC8' } }
     };
-
+    const greenCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF00FF00' } }
+    };
+    const blueCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF0000FF' } }
+    };
     const cinzaescuroCell = {
-        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'bfddf3' } },
-        font: { size: 10, name: 'Calibri', color: { argb: '000000' } }
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'bfddf3' } }
+    };
+    const cinzaclaroCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFFF' } }
     };
 
-    const cinzaclaroCell = {
-        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFFF' } },
-        font: { size: 10, name: 'Calibri', color: { argb: '000000' } }
+    const cinzactCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFFFF' } }
+    };
+
+    const cinzaetCell = {
+        fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: 'bfddf3' } }
     };
 
     /* ---------- MONTAGEM DA PLANILHA ---------- */
@@ -1858,57 +1796,37 @@ async function imprimirExcelCompleto() {
 
     /* ---------- CABEÇALHO DOURADO ---------- */
     const headerRow = ['COD', '', 'MATERIAL', '', '', '', '', '', 'UNID', 'COMP', 'ALTURA', 'QUANT', 'V. TOTAL'];
-    const headerRowNum = ws.addRow(headerRow);
-
-    // Aplica estilo dourado no cabeçalho
-    for (let i = 1; i <= 13; i++) {
-        ws.getCell(headerRowNum.number, i).style = douradoCell;
-    }
+    ws.addRow(headerRow);
 
     /* ---------- PRODUTOS ---------- */
-    produtos.forEach((p, idx) => {
-        const rowNum = ws.addRow(p);
-        const style = (idx % 2 === 0) ? cinzaclaroCell : cinzaescuroCell;
-
-        // Aplica estilo zebrado em todas as colunas
-        for (let i = 1; i <= 13; i++) {
-            const cell = ws.getCell(rowNum.number, i);
-            cell.fill = style.fill;
-            cell.font = style.font;
-        }
-    });
+    produtos.forEach(p => ws.addRow(p));
 
     /* ---------- PREENCHE ATÉ LINHA 57 ---------- */
     while (ws.rowCount < 57) ws.addRow([]);
 
     /* ---------- TOTAIS ---------- */
-    ws.addRow(['', '', '', 'IMPOSTO', '', '', '', '', '14%', `R$ ${imposto.toFixed(2).replace('.', ',')}`]);
+    ws.addRow(['', '', '', 'IMPOSTO', '', '', '', '15%', `R$ ${imposto.toFixed(2).replace('.', ',')}`]);
     ws.addRow([]);
     ws.addRow(['', '', '', '', 'PIX', 'CHEQUE', 'DINHEIRO', 'CARTÃO', 'ANOTAR', 'V.TOTAL']);
-    ws.addRow(['', '', 'VALOR', 'À VISTA', '', '', '', '', '', `R$ ${aVista}`]);
-    ws.addRow(['', '', '1', 'ENTRADA', '', '', '', '', '', `R$ ${entrada}`]);
-    ws.addRow(['', '', 'VALOR', 'À PRAZO', '', '', '', '', '', `R$ ${aPrazo}`]);
-    ws.addRow(['', '', '3', 'PARCELAs', '', '', '', '', '', `R$ ${parcela}`]);
+    ws.addRow(['', '', '', 'A VISTA', '', '', '', '', '', `R$ ${aVista}`]);
+    ws.addRow(['', '', '', 'A PRAZO', '', '', '', '', '', `R$ ${aPrazo}`]);
+    ws.addRow(['', '', '', 'A VISTA', 'ENTRADA', `R$ ${entradaAV}`, '', '', 'RESTANTE', `R$ ${restanteAV}`]);
+    ws.addRow(['', '', '', 'A PRAZO', 'ENTRADA', `R$ ${entradaAP}`, '', '', 'RESTANTE', `R$ ${restanteAP}`]);
     ws.getColumn('H').alignment = { horizontal: 'left' };
     ws.getColumn('J').alignment = { horizontal: 'right' };
 
-    /* ---------- CORES ZEBRADAS (sem sobrescrever alignment) ---------- */
-    for (let row = 10; row <= 58; row++) {
-        const style = row % 2 === 0 ? cinzaclaroCell : cinzaescuroCell;
-        headerRow.forEach((_, i) => Object.assign(ws.getCell(row, i + 1).style, style));
-    }
 
     const movimentos = [
 
         // recortar celulas de C10 a C37                
-        { de: 'B10', para: 'L1' }, { de: 'B12', para: 'L1' }, { de: 'B13', para: 'L1' },
-        { de: 'B14', para: 'L1' }, { de: 'B15', para: 'L1' }, { de: 'B16', para: 'L1' }, { de: 'B17', para: 'L1' },
-        { de: 'B18', para: 'L1' }, { de: 'B19', para: 'L1' }, { de: 'B20', para: 'L1' }, { de: 'B21', para: 'L1' },
-        { de: 'B22', para: 'L1' }, { de: 'B23', para: 'L1' }, { de: 'B24', para: 'L1' }, { de: 'B25', para: 'L1' },
-        { de: 'B26', para: 'L1' }, { de: 'B27', para: 'L1' }, { de: 'B28', para: 'L1' }, { de: 'B29', para: 'L1' },
-        { de: 'B30', para: 'L1' }, { de: 'B31', para: 'L1' }, { de: 'B32', para: 'L1' }, { de: 'B33', para: 'L1' },
-        { de: 'B34', para: 'L1' }, { de: 'B35', para: 'L1' }, { de: 'B36', para: 'L1' }, { de: 'B37', para: 'L1' },
-        { de: 'B34', para: 'L1' }, { de: 'B38', para: 'L1' }, { de: 'B39', para: 'L1' }, { de: 'B40', para: 'L1' },
+        { de: 'C10', para: 'L1' }, { de: 'C12', para: 'L1' }, { de: 'C13', para: 'L1' },
+        { de: 'C14', para: 'L1' }, { de: 'C15', para: 'L1' }, { de: 'C16', para: 'L1' }, { de: 'C17', para: 'L1' },
+        { de: 'C18', para: 'L1' }, { de: 'C19', para: 'L1' }, { de: 'C20', para: 'L1' }, { de: 'C21', para: 'L1' },
+        { de: 'C22', para: 'L1' }, { de: 'C23', para: 'L1' }, { de: 'C24', para: 'L1' }, { de: 'C25', para: 'L1' },
+        { de: 'C26', para: 'L1' }, { de: 'C27', para: 'L1' }, { de: 'C28', para: 'L1' }, { de: 'C29', para: 'L1' },
+        { de: 'C30', para: 'L1' }, { de: 'C31', para: 'L1' }, { de: 'C32', para: 'L1' }, { de: 'C33', para: 'L1' },
+        { de: 'C34', para: 'L1' }, { de: 'C35', para: 'L1' }, { de: 'C36', para: 'L1' }, { de: 'C37', para: 'L1' },
+        { de: 'C34', para: 'L1' }, { de: 'C38', para: 'L1' }, { de: 'C39', para: 'L1' }, { de: 'C40', para: 'L1' },
 
         // recortar celulas de D10 a D37
         { de: 'D11', para: 'L1' },
@@ -1958,11 +1876,11 @@ async function imprimirExcelCompleto() {
 
         // recortar celulas especificas do cabeçalho
 
-        { de: 'B2', para: 'L1' }, { de: 'D2', para: 'L1' }, { de: 'E2', para: 'L1' }, { de: 'B7', para: 'L1' },
-        { de: 'B5', para: 'L1' }, { de: 'D5', para: 'L1' }, { de: 'E5', para: 'L1' }, { de: 'F5', para: 'L1' },
-        { de: 'B3', para: 'L1' }, { de: 'B4', para: 'L1' }, { de: 'L2', para: 'L1' }, { de: 'G7', para: 'L1' },
+        { de: 'C2', para: 'L1' }, { de: 'D2', para: 'L1' }, { de: 'E2', para: 'L1' }, { de: 'B7', para: 'L1' },
+        { de: 'C5', para: 'L1' }, { de: 'D5', para: 'L1' }, { de: 'E5', para: 'L1' }, { de: 'F5', para: 'L1' },
+        { de: 'C3', para: 'L1' }, { de: 'C4', para: 'L1' }, { de: 'L2', para: 'L1' }, { de: 'G7', para: 'L1' },
         { de: 'E7', para: 'L1' }, { de: 'I2', para: 'L1' }, { de: 'E7', para: 'L1' }, { de: 'B9', para: 'L1' },
-        { de: 'B11', para: 'L1' }, { de: 'D11', para: 'L1' }, { de: 'D10', para: 'L1' },
+        { de: 'C11', para: 'L1' }, { de: 'D11', para: 'L1' }, { de: 'D10', para: 'L1' },
     ];
 
     /* ---------- COPIA/RECORTE MANUAL ---------- */
@@ -1980,166 +1898,213 @@ async function imprimirExcelCompleto() {
     /* ---------- CÉLULAS COLORIDAS ---------- */
     headerRow.forEach((_, i) => ws.getCell(9, i + 1).style = douradoCell);
 
-
-    /* ---------- ESTILOS DAS LINHAS DE TOTAIS ---------- */
-    // Linha 58 - Imposto
-    for (let i = 1; i <= 13; i++) {
-        ws.getCell(58, i).fill = cinzaescuroCell.fill;
-        ws.getCell(58, i).font = cinzaescuroCell.font;
+    /* ---------- CORES ZEBRADAS (sem sobrescrever alignment) ---------- */
+    for (let row = 10; row <= 58; row++) {
+        const style = row % 2 === 0 ? cinzaclaroCell : cinzaescuroCell;
+        headerRow.forEach((_, i) => Object.assign(ws.getCell(row, i + 1).style, style));
     }
 
-    // Linha 60 - Cabeçalho de pagamento
-    for (let i = 1; i <= 13; i++) {
-        ws.getCell(60, i).fill = pastelCell.fill;
-        ws.getCell(60, i).font = pastelCell.font;
+    /* ---------- ALINHAMENTO FINAL ---------- */
+    ['A', 'B', 'C', 'D'].forEach(c => ws.getColumn(c).alignment = { horizontal: 'left' });
+    ['I', 'J', 'K', 'L', 'M'].forEach(c => ws.getColumn(c).alignment = { horizontal: 'center' });
+
+    ['A', 'B', 'C', 'D', 'E', 'H'].forEach(col =>
+        headerRow.forEach((_, i) => ws.getCell(58, i + 1).style = cinzaescuroCell)
+    );
+
+    headerRow.forEach((_, i) => ws.getCell(59, i + 1).style = cinzaclaroCell);
+
+    headerRow.forEach((_, i) => ws.getCell(60, i + 1).style = pastelCell);
+
+    headerRow.forEach((_, i) => ws.getCell(61, i + 1).style = peleCell);
+
+    headerRow.forEach((_, i) => ws.getCell(62, i + 1).style = pastelCell);
+
+    headerRow.forEach((_, i) => ws.getCell(63, i + 1).style = peleCell);
+
+    headerRow.forEach((_, i) => ws.getCell(64, i + 1).style = pastelCell);
+
+
+
+    function copiarCel(origem, destino, recortar = false) {
+        const [o, d] = [ws.getCell(origem), ws.getCell(destino)];
+        d.value = o.value;
+        d.style = o.style;          // copia preenchimento, bordas, alinhamento...
+        d.numFmt = o.numFmt;
+        if (recortar) o.value = null; // limpa origem
     }
-
-    // Linhas 61-64 - Valores
-    [61, 62, 63, 64].forEach((rowNum, idx) => {
-        const style = (idx % 2 === 0) ? peleCell : pastelCell;
-        for (let i = 1; i <= 13; i++) {
-            ws.getCell(rowNum, i).fill = style.fill;
-            ws.getCell(rowNum, i).font = style.font;
-        }
-    });
-
-    /* ---------- BORDAS ---------- */
+    /* ---------- ESTILO: APENAS BORDA PRETA ---------- */
     const bordaPretaFUNDO = {
         border: {
-            top: { style: 'thin', color: { argb: 'FFFFFF' } },
-            left: { style: 'thin', color: { argb: 'FFFFFF' } },
-            bottom: { style: 'thin', color: { argb: '000000' } },
-            right: { style: 'thin', color: { argb: 'FFFFFF' } }
+            top: { style: 'thin', color: { argb: 'FFFFFF' } },//SIMA
+            left: { style: 'thin', color: { argb: 'FFFFFF' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: 'FFFFFF' } } //DIREITA
         }
     };
 
-    const bordaPretaCOMPLETO = {
+    const bordaPretaFUNDOd = {
         border: {
-            top: { style: 'thin', color: { argb: '000000' } },
-            left: { style: 'thin', color: { argb: '000000' } },
-            bottom: { style: 'thin', color: { argb: '000000' } },
-            right: { style: 'thin', color: { argb: '000000' } }
+            top: { style: 'thin', color: { argb: 'FFFFD700' } },//SIMA
+            left: { style: 'thin', color: { argb: 'FFFFD700' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: 'FFFFD700' } } //DIREITA
         }
     };
 
-    const bordaPretaFINAL_DIREITA = {
+    const bordaPretaFUNDOce = {
         border: {
-            top: { style: 'thin', color: { argb: '000000' } },
-            left: { style: 'thin', color: { argb: 'FFFFFF' } },
-            bottom: { style: 'thin', color: { argb: '000000' } },
-            right: { style: 'thin', color: { argb: '000000' } }
-        }
-    };
-
-    const bordaPretaFINAL_ESQUERDA = {
-        border: {
-            top: { style: 'thin', color: { argb: '000000' } },
-            left: { style: 'thin', color: { argb: '000000' } },
-            bottom: { style: 'thin', color: { argb: '000000' } },
-            right: { style: 'thin', color: { argb: 'FFFFFF' } }
+            top: { style: 'thin', color: { argb: 'bfddf3' } },//SIMA
+            left: { style: 'thin', color: { argb: 'bfddf3' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: 'bfddf3' } } //DIREITA
         }
     };
 
     const bordaPretaTOPO_FUNDO = {
         border: {
-            top: { style: 'thin', color: { argb: '000000' } },
-            left: { style: 'thin', color: { argb: 'FFFFFF' } },
-            bottom: { style: 'thin', color: { argb: '000000' } },
-            right: { style: 'thin', color: { argb: 'FFFFFF' } }
+            top: { style: 'thin', color: { argb: '000000' } },//SIMA
+            left: { style: 'thin', color: { argb: 'FFFFFF' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: 'FFFFFF' } } //DIREITA
         }
     };
 
-    /* ---------- APLICA BORDAS ---------- */
-    // Linha 1
-    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'].forEach(col =>
+    const bordaPretaFINAL_DIREITA = {
+        border: {
+            top: { style: 'thin', color: { argb: '000000' } },//SIMA
+            left: { style: 'thin', color: { argb: 'FFFFFF' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: '000000' } } //DIREITA
+        }
+    };
+
+    const bordaPretaCOMPLETO = {
+        border: {
+            top: { style: 'thin', color: { argb: '000000' } },//SIMA
+            left: { style: 'thin', color: { argb: '000000' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: '000000' } } //DIREITA
+        }
+    };
+
+    const bordaPretaFINAL_ESQUERDA = {
+        border: {
+            top: { style: 'thin', color: { argb: '000000' } },//SIMA
+            left: { style: 'thin', color: { argb: '000000' } },//ESQUERDA
+            bottom: { style: 'thin', color: { argb: '000000' } },//BAIXO
+            right: { style: 'thin', color: { argb: 'FFFFFF' } } //DIREITA
+        }
+    };
+
+
+
+    /* ---------- APLICANDO EM UMA CÉLULA ESPECÍFICA ---------- */
+    // linha 1 
+    ['A', 'B', 'C', 'D', 'F', 'G', 'E', 'H', 'I', 'J', 'K', 'L', 'M'].forEach(col =>
         Object.assign(ws.getCell(`${col}1`).style, bordaPretaFUNDO)
     );
 
-    // Linha 2
+    // linha 2
     ['B', 'C', 'D', 'E', 'F', 'G', 'J', 'K'].forEach(col =>
         Object.assign(ws.getCell(`${col}2`).style, bordaPretaFUNDO)
     );
 
-    // Linha 3
+    // lInha 3
     ['B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'].forEach(col =>
         Object.assign(ws.getCell(`${col}3`).style, bordaPretaFUNDO)
     );
 
-    // Linha 4
+    // linha 4
     ['B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M'].forEach(col =>
         Object.assign(ws.getCell(`${col}4`).style, bordaPretaTOPO_FUNDO)
     );
 
-    // Linha 5
+    // linha 5
     ['B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M'].forEach(col =>
         Object.assign(ws.getCell(`${col}5`).style, bordaPretaTOPO_FUNDO)
     );
 
-    // Linha 7
-    Object.assign(ws.getCell('B7').style, bordaPretaTOPO_FUNDO);
-    Object.assign(ws.getCell('A7').style, bordaPretaFINAL_ESQUERDA);
-    Object.assign(ws.getCell('C7').style, bordaPretaFINAL_DIREITA);
+    // linha 7
+    ['B'].forEach(col =>
+        Object.assign(ws.getCell(`${col}7`).style, bordaPretaTOPO_FUNDO),
+    );
 
-    // Cabeçalho (linha 9)
     ['A', 'B', 'C', 'D', 'E', 'H'].forEach(col =>
-        Object.assign(ws.getCell(`${col}9`).style, {
-            border: {
-                top: { style: 'thin', color: { argb: 'FFFFD700' } },
-                left: { style: 'thin', color: { argb: 'FFFFD700' } },
-                bottom: { style: 'thin', color: { argb: '000000' } },
-                right: { style: 'thin', color: { argb: 'FFFFD700' } }
-            }
-        })
+        Object.assign(ws.getCell(`${col}9`).style, bordaPretaFUNDOd)
     );
 
-    // Linha 58
-    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'].forEach(col =>
-        Object.assign(ws.getCell(`${col}58`).style, {
-            border: {
-                top: { style: 'thin', color: { argb: 'bfddf3' } },
-                left: { style: 'thin', color: { argb: 'bfddf3' } },
-                bottom: { style: 'thin', color: { argb: '000000' } },
-                right: { style: 'thin', color: { argb: 'bfddf3' } }
-            }
-        })
+    // linha 39
+    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'].forEach(col =>
+        Object.assign(ws.getCell(`${col}58`).style, bordaPretaFUNDOce)
     );
 
-    // Linhas 60-64
-    ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'].forEach(col => {
-        [60, 61, 62, 63, 64].forEach(row =>
-            Object.assign(ws.getCell(`${col}${row}`).style, bordaPretaCOMPLETO)
-        );
-    });
+    // linha 41
+    ['C', 'D', 'E', 'F', 'G'].forEach(col =>
+        Object.assign(ws.getCell(`${col}60`).style, bordaPretaCOMPLETO)
+    );
+
+    // linha 42
+    ['C', 'D', 'E', 'F', 'G'].forEach(col =>
+        Object.assign(ws.getCell(`${col}61`).style, bordaPretaCOMPLETO)
+    );
+
+    // linha 43
+    ['C', 'D', 'E', 'F', 'G'].forEach(col =>
+        Object.assign(ws.getCell(`${col}62`).style, bordaPretaCOMPLETO)
+    );
+
+    // linha 44
+    ['C', 'D', 'E', 'F', 'G'].forEach(col =>
+        Object.assign(ws.getCell(`${col}63`).style, bordaPretaCOMPLETO)
+    );
+
+    // linha 64
+    ['C', 'D', 'E', 'F', 'G'].forEach(col =>
+        Object.assign(ws.getCell(`${col}64`).style, bordaPretaCOMPLETO)
+    );
+
 
     Object.assign(ws.getCell('A2').style, bordaPretaCOMPLETO);
     Object.assign(ws.getCell('A3').style, bordaPretaCOMPLETO);
     Object.assign(ws.getCell('A4').style, bordaPretaCOMPLETO);
     Object.assign(ws.getCell('A5').style, bordaPretaCOMPLETO);
 
-    ['B60', 'B61', 'B62', 'B63', 'B64'].forEach(cell =>
-        Object.assign(ws.getCell(cell).style, bordaPretaCOMPLETO)
-    );
+    Object.assign(ws.getCell('B60').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('B61').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('B62').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('B63').style, bordaPretaCOMPLETO);
+    Object.assign(ws.getCell('B64').style, bordaPretaCOMPLETO);
+
+    Object.assign(ws.getCell('A7').style, bordaPretaFINAL_ESQUERDA);
+    Object.assign(ws.getCell('C7').style, bordaPretaFINAL_DIREITA);
 
     Object.assign(ws.getCell('H2').style, bordaPretaFINAL_ESQUERDA);
+
     Object.assign(ws.getCell('J5').style, bordaPretaCOMPLETO);
     Object.assign(ws.getCell('J4').style, bordaPretaCOMPLETO);
     Object.assign(ws.getCell('I2').style, bordaPretaFINAL_DIREITA);
+    Object.assign(ws.getCell('G60').style, bordaPretaFINAL_ESQUERDA);
+    Object.assign(ws.getCell('G61').style, bordaPretaFINAL_ESQUERDA);
+    Object.assign(ws.getCell('G62').style, bordaPretaFINAL_ESQUERDA);
+    Object.assign(ws.getCell('G63').style, bordaPretaFINAL_ESQUERDA);
+    Object.assign(ws.getCell('G64').style, bordaPretaFINAL_ESQUERDA);
 
-    ['G60', 'G61', 'G62', 'G63', 'G64'].forEach(cell =>
-        Object.assign(ws.getCell(cell).style, bordaPretaCOMPLETO)
-    );
+    Object.assign(ws.getCell('H60').style, bordaPretaFINAL_DIREITA);
+    Object.assign(ws.getCell('H61').style, bordaPretaFINAL_DIREITA);
+    Object.assign(ws.getCell('H62').style, bordaPretaFINAL_DIREITA);
+    Object.assign(ws.getCell('H63').style, bordaPretaFINAL_DIREITA);
+    Object.assign(ws.getCell('H64').style, bordaPretaFINAL_DIREITA);
 
-    ['H60', 'H61', 'H62', 'H63', 'H64'].forEach(cell =>
-        Object.assign(ws.getCell(cell).style, bordaPretaCOMPLETO)
-    );
+    Object.assign(ws.getCell('L2').style, bordaPretaTOPO_FUNDO)
+    Object.assign(ws.getCell('L3').style, bordaPretaTOPO_FUNDO)
+    Object.assign(ws.getCell('L4').style, bordaPretaTOPO_FUNDO)
+    Object.assign(ws.getCell('L5').style, bordaPretaTOPO_FUNDO)
 
-    ['L2', 'L3', 'L4', 'L5'].forEach(cell =>
-        Object.assign(ws.getCell(cell).style, bordaPretaTOPO_FUNDO)
-    );
-
-    ['M2', 'M3', 'M4', 'M5'].forEach(cell =>
-        Object.assign(ws.getCell(cell).style, bordaPretaFINAL_DIREITA)
-    );
+    Object.assign(ws.getCell('M2').style, bordaPretaFINAL_DIREITA)
+    Object.assign(ws.getCell('M3').style, bordaPretaFINAL_DIREITA)
+    Object.assign(ws.getCell('M4').style, bordaPretaFINAL_DIREITA)
+    Object.assign(ws.getCell('M5').style, bordaPretaFINAL_DIREITA)
 
     // faixa de A9 até J64
     ws.eachRow({ includeEmpty: false }, (row, rowNumber) => {
@@ -2149,6 +2114,8 @@ async function imprimirExcelCompleto() {
             });
         }
     });
+
+
 
     /* ---------- SALVA O ARQUIVO ---------- */
     const buffer = await wb.xlsx.writeBuffer();

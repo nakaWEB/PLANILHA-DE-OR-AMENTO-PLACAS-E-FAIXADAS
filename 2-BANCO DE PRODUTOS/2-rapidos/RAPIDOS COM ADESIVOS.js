@@ -77,11 +77,10 @@ let catalogoProdutos = {
         { codigo: "3966516969", idX3D: "2600884", nome: "TEMPO ATENDIMENTO", preco: 25, formula: "Q * $", unidade: "H" },
         { codigo: "584724555", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - LORENA", preco: 50.00, formula: "Q * $", unidade: "H" },
         { codigo: "3744633669", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - EDUARDA", preco: 50.00, formula: "Q * $", unidade: "H" },
-        { codigo: "1989466401", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - DANI", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "1989466401", idX3D: "268", nome: "TEMPO DE DESIGNER E ARQUIVOS - DANI", preco: 50.00, formula: "Q * $", unidade: "H" },
         { codigo: "2664452927", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - MAICON", preco: 50.00, formula: "Q * $", unidade: "H" },
-        { codigo: "2006889900", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - ALICE", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "2006889900", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - CAROL", preco: 50.00, formula: "Q * $", unidade: "H" },
         { codigo: "389465763", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - MARIA EDUARDA", preco: 50.00, formula: "Q * $", unidade: "H" },
-        { codigo: "4192081751", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - KARINA", preco: 50.00, formula: "Q * $", unidade: "H" },
         { codigo: "2315161321", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS -", preco: 50.00, formula: "Q * $", unidade: "H" },
 
         { codigo: "1996051520", idX3D: "630", nome: "TEMPO PRODUÇÃO COMUNICAÇÃO VISUAL", preco: 25.00, formula: "Q * $", unidade: "H" },

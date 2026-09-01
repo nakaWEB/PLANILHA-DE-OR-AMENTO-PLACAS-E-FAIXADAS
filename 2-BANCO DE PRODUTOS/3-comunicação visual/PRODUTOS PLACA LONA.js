@@ -298,13 +298,14 @@ let catalogoProdutos = {
 
         ],
         "TEMPO DE DESIGNER E ATENDIMENTO": [
-            { codigo: "3679", idX3D: "2600884", nome: "TEMPO ATENDIMENTO", preco: 25, formula: "Q * $", unidade: "H" },
-            { codigo: "28893", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - LORENA", preco: 50.00, formula: "Q * $", unidade: "H" },
-            { codigo: "16613", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - EDUARDA", preco: 50.00, formula: "Q * $", unidade: "H" },
-            { codigo: "78612", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - DANI", preco: 50.00, formula: "Q * $", unidade: "H" },
-            { codigo: "3898", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - MAICON", preco: 50.00, formula: "Q * $", unidade: "H" },
-            { codigo: "4326", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - ALICE", preco: 50.00, formula: "Q * $", unidade: "H" },
-            { codigo: "97773", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS -", preco: 50.00, formula: "Q * $", unidade: "H" },
+            { codigo: "3966516969", idX3D: "2600884", nome: "TEMPO ATENDIMENTO", preco: 25, formula: "Q * $", unidade: "H" },
+            { codigo: "584724555", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - LORENA", preco: 50.00, formula: "Q * $", unidade: "H" },
+            { codigo: "3744633669", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - EDUARDA", preco: 50.00, formula: "Q * $", unidade: "H" },
+            { codigo: "1989466401", idX3D: "268", nome: "TEMPO DE DESIGNER E ARQUIVOS - DANI", preco: 50.00, formula: "Q * $", unidade: "H" },
+            { codigo: "2664452927", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - MAICON", preco: 50.00, formula: "Q * $", unidade: "H" },
+            { codigo: "2006889900", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - CAROL", preco: 50.00, formula: "Q * $", unidade: "H" },
+            { codigo: "389465763", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - MARIA EDUARDA", preco: 50.00, formula: "Q * $", unidade: "H" },
+            { codigo: "2315161321", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS -", preco: 50.00, formula: "Q * $", unidade: "H" },
         ],
         "TEMPO DE SERVIÇO": [
             { codigo: "9697", idX3D: "43822", nome: "TEMPO DE LASER - MATERIAL CLIENTE (VERIFICAR NO PROGRAMA DE CORTE)", preco: 1.00, formula: "C * Q * $", unidade: "H" },
@@ -915,8 +916,9 @@ function initializeInterface() {
                             <td class="clicavel"></td>
                             <td id="linha2"></td>
                         </tr>
+
                         <tr>
-                            <td>ENTRADA</td>
+                            <td>A PRAZO</td>
                             <td class="clicavel"></td>
                             <td class="clicavel"></td>
                             <td class="clicavel"></td>
@@ -925,22 +927,29 @@ function initializeInterface() {
                             <td id="linha3"></td>
                         </tr>
                         <tr>
-                            <td>A PRAZO</td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td id="linha4"></td>
+                            <td style="backdrop-filter: none; border: rgba(0, 56, 112, 0); background: rgba(0, 56, 112, 0);" class="clicavel"></td>
+                            <td style="backdrop-filter: none; border: rgba(0, 56, 112, 0); background: rgba(0, 56, 112, 0);" class="clicavel"></td>
+                            <td style="backdrop-filter: none; border: rgba(0, 56, 112, 0); background: rgba(0, 56, 112, 0);" class="clicavel"></td>
+                            <td style="backdrop-filter: none; border: rgba(0, 56, 112, 0); background: rgba(0, 56, 112, 0);" class="clicavel"></td>
+                            <td style="backdrop-filter: none; border: rgba(0, 56, 112, 0); background: rgba(0, 56, 112, 0);" class="clicavel"></td>
                         </tr>
                         <tr>
-                            <td>PARCELAS</td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td class="clicavel"></td>
-                            <td id="linha5"></td>
+                            <td>A VISTA</td>
+                            <td>ENTRADA 30%</td>
+                            <td id="30AV"></td>
+                            <td></td>
+                            <td></td>
+                            <td>RESTANTE 70%</td>
+                            <td id="70AV"></td>
+                        </tr>
+                        <tr>
+                            <td>A PRAZO</td>
+                            <td>ENTRADA 30%</td>
+                            <td id="30AP"></td>
+                            <td></td>
+                            <td></td>
+                            <td>RESTANTE 70%</td>
+                            <td id="70AP"></td>
                         </tr>
                     </table>
                 `;
@@ -1307,9 +1316,12 @@ function atualizarTotalGeral() {
     const totalComImposto = somaGeral + imposto;
 
     document.getElementById("linha2").textContent = "R$ " + totalComImposto.toFixed(2).replace('.', ',');
-    document.getElementById("linha3").textContent = "R$ " + ((totalComImposto * 0.05 + totalComImposto) / 4).toFixed(2).replace('.', ',');
-    document.getElementById("linha4").textContent = "R$ " + (totalComImposto * 0.05 + totalComImposto).toFixed(2).replace('.', ',');
-    document.getElementById("linha5").textContent = "R$ " + ((totalComImposto * 0.05 + totalComImposto) / 4).toFixed(2).replace('.', ',');
+    document.getElementById("linha3").textContent = "R$ " + (totalComImposto * 0.05 + totalComImposto).toFixed(2).replace('.', ',');
+    document.getElementById("30AV").textContent = "R$ " + (totalComImposto * 0.30).toFixed(2).replace('.', ',');
+    document.getElementById("70AV").textContent = "R$ " + (totalComImposto * 0.70).toFixed(2).replace('.', ',');
+
+    document.getElementById("30AP").textContent = "R$ " + ((totalComImposto * 0.05 + totalComImposto) * 0.30).toFixed(2).replace('.', ',');
+    document.getElementById("70AP").textContent = "R$ " + ((totalComImposto * 0.05 + totalComImposto) * 0.70).toFixed(2).replace('.', ',');
 }
 
 /* ----------  SALVA DIRETO EM C:\Users\As informática\Downloads\orçamentos  ---------- */
@@ -1523,9 +1535,11 @@ async function imprimirExcelCompleto() {
     const imposto = subTotal * 0.15;
     const total = subTotal + imposto;
     const aVista = total.toFixed(2).replace('.', ',');
-    const entrada = (total * 1.05 * 0.25).toFixed(2).replace('.', ',');
     const aPrazo = (total * 1.05).toFixed(2).replace('.', ',');
-    const parcela = (total * 1.05 * 1.05 / 4).toFixed(2).replace('.', ',');
+    const entradaAP = (total * 1.05 * 0.30).toFixed(2).replace('.', ',');
+    const restanteAP = (total * 1.05 * 0.70).toFixed(2).replace('.', ',');
+    const entradaAV = (total * 0.30).toFixed(2).replace('.', ',');
+    const restanteAV = (total * 0.70).toFixed(2).replace('.', ',');
 
     /* ---------- EXCELJS ---------- */
     const wb = new ExcelJS.Workbook();
@@ -1621,10 +1635,10 @@ async function imprimirExcelCompleto() {
     ws.addRow(['', '', '', 'IMPOSTO', '', '', '', '15%', `R$ ${imposto.toFixed(2).replace('.', ',')}`]);
     ws.addRow([]);
     ws.addRow(['', '', '', '', 'PIX', 'CHEQUE', 'DINHEIRO', 'CARTÃO', 'ANOTAR', 'V.TOTAL']);
-    ws.addRow(['', '', 'VALOR', 'A VISTA', '', '', '', '', '', `R$ ${aVista}`]);
-    ws.addRow(['', '', '1', 'ENTRADA', '', '', '', '', '', `R$ ${entrada}`]);
-    ws.addRow(['', '', 'VALOR', 'A PRAZO', '', '', '', '', '', `R$ ${aPrazo}`]);
-    ws.addRow(['', '', '3', 'PARCELAs', '', '', '', '', '', `R$ ${parcela}`]);
+    ws.addRow(['', '', '', 'A VISTA', '', '', '', '', '', `R$ ${aVista}`]);
+    ws.addRow(['', '', '', 'A PRAZO', '', '', '', '', '', `R$ ${aPrazo}`]);
+    ws.addRow(['', '', '', 'A VISTA', 'ENTRADA', `R$ ${entradaAV}`, '', '', 'RESTANTE', `R$ ${restanteAV}`]);
+    ws.addRow(['', '', '', 'A PRAZO', 'ENTRADA', `R$ ${entradaAP}`, '', '', 'RESTANTE', `R$ ${restanteAP}`]);
     ws.getColumn('H').alignment = { horizontal: 'left' };
     ws.getColumn('J').alignment = { horizontal: 'right' };
 

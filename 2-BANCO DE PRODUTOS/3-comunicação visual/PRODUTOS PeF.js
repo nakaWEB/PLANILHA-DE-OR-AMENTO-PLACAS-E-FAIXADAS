@@ -495,12 +495,14 @@ let catalogoProdutos = {
 
         { codigo: "3679", idX3D: "2600884", nome: "TEMPO ATENDIMENTO", preco: 25, formula: "Q * $", unidade: "H" },
 
-        { codigo: "28893", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - LORENA", preco: 50.00, formula: "Q * $", unidade: "H" },
-        { codigo: "16613", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - EDUARDA", preco: 50.00, formula: "Q * $", unidade: "H" },
-        { codigo: "78612", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - DANI", preco: 50.00, formula: "Q * $", unidade: "H" },
-        { codigo: "3898", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - MAICON", preco: 50.00, formula: "Q * $", unidade: "H" },
-        { codigo: "4326", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - ALICE", preco: 50.00, formula: "Q * $", unidade: "H" },
-        { codigo: "97773", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS -", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "3966516969", idX3D: "2600884", nome: "TEMPO ATENDIMENTO", preco: 25, formula: "Q * $", unidade: "H" },
+        { codigo: "584724555", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - LORENA", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "3744633669", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - EDUARDA", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "1989466401", idX3D: "268", nome: "TEMPO DE DESIGNER E ARQUIVOS - DANI", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "2664452927", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - MAICON", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "2006889900", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - CAROL", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "389465763", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS - MARIA EDUARDA", preco: 50.00, formula: "Q * $", unidade: "H" },
+        { codigo: "2315161321", idX3D: "26013915", nome: "TEMPO DE DESIGNER E ARQUIVOS -", preco: 50.00, formula: "Q * $", unidade: "H" },
 
         { codigo: "9801", idX3D: "2600884", nome: "TEMPO DE INSTALAÇÃO (HORA * Nº DE FUNCIONÁRIO)", preco: 25, formula: "Q * $", unidade: "H" },
         { codigo: "9697", idX3D: "43822", nome: "TEMPO DE LASER - MATERIAL CLIENTE (VERIFICAR NO PROGRAMA DE CORTE)", preco: 1.00, formula: "C * Q * $", unidade: "H" },
