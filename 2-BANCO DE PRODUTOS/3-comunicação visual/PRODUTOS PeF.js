@@ -128,6 +128,7 @@ let catalogoProdutos = {
         { codigo: "35975", idX3D: "26013886", nome: "PEDAÇO METALON TUBULAR 2 POLEGADA", preco: 155, formula: "C * Q * $", unidade: "M" },
         { codigo: "11568", idX3D: "26013887", nome: "PEDAÇO METALON TUBULAR 3 POLEGADA", preco: 260, formula: "C * Q * $", unidade: "M" },
         { codigo: "5682", idX3D: "43339", nome: "PERFIL ENRIGECIDO 75 MM", preco: 39, formula: "C * Q * $", unidade: "M" },
+        { codigo: "5682", idX3D: "43339", nome: "PERFIL U ENRIGECIDO", preco: 45.5, formula: "C * Q * $", unidade: "M" },
         { codigo: "73926", idX3D: "2601087", nome: "PORCA 1/4", preco: 0.3, formula: "Q * $", unidade: "UNID" },
         { codigo: "61137", idX3D: "26013891", nome: "PORCA 3/16", preco: 0.2, formula: "Q * $", unidade: "UNID" },
         { codigo: "67047", idX3D: "201088", nome: "PORCA 5/16", preco: 0.45, formula: "Q * $", unidade: "M" },
