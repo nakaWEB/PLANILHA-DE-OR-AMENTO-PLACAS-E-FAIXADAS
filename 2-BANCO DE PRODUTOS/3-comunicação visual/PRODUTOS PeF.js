@@ -146,7 +146,10 @@ let catalogoProdutos = {
         { codigo: "60251", idX3D: "43848", nome: "VERGALHÃO 5/16", preco: 9, formula: "C * Q * $", unidade: "UNID" },
         { codigo: "00976534", idX3D: "", nome: "MOTOR COM REDUÇÃO 12V", preco: 1120, formula: "Q * $", unidade: "UNID" },
         { codigo: "009867321", idX3D: "", nome: "PRATO GIRATÓRIO", preco: 300, formula: "Q * $", unidade: "UNID" },
-        { codigo: "0087253", idX3D: "", nome: "CONECTOR GIRATÓRIO", preco: 200, formula: "Q * $", unidade: "UNID" }
+        { codigo: "0087253", idX3D: "", nome: "CONECTOR GIRATÓRIO", preco: 200, formula: "Q * $", unidade: "UNID" },
+        { codigo: "006745g3", idX3D: "", nome: "FORRO PVC 10mm", preco: 57.85, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "004295gt", idX3D: "", nome: "RODA FORRO", preco: 9.04, formula: "C * Q * $", unidade: "M" },
+        { codigo: "00483gpt", idX3D: "", nome: "EMENDA FORRO PVC", preco: "11.83", formula: "C * Q * $", unidade: "M"
     ],
     "LONAS E ADESIVOS": [
         { codigo: "92406", idX3D: "1154", nome: "ABRAÇADEIRA 250MM", preco: 1.00, formula: "(((C[20703] + A[20703])*2 + (C[78473] + A[78473])*2) * 4) * Q * $", unidade: "UNID" }, //mudar formula para 'comprimento do produto de codigo 934 * Q * $' mude a propriedade deste produto de forma que os dados vindo do produto de codigo 934 n possão ser alterados na pagina executavel
