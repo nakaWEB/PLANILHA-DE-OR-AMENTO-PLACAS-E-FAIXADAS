@@ -150,7 +150,9 @@ let catalogoProdutos = {
         { codigo: "006745g3", idX3D: "", nome: "FORRO PVC 10mm", preco: 57.85, formula: "C * A * Q * $", unidade: "M²" },
         { codigo: "004295gt", idX3D: "", nome: "RODA FORRO", preco: 9.04, formula: "C * Q * $", unidade: "M" },
         { codigo: "00483gpt", idX3D: "", nome: "EMENDA FORRO PVC", preco: 11.83, formula: "C * Q * $", unidade: "M" },
-        { codigo: "005389tf", idX3D: "", nome: "TELHÃO ONDULADO", preco: 70.00, formula: "C * Q * $", unidade: "M²" }
+        { codigo: "005389tf", idX3D: "", nome: "TELHÃO ONDULADO", preco: 70.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "234523tg", idX3D: "", nome: "CANO ESGOTO", preco: 15.04, formula: "C * Q * $", unidade: "M" },
+        { codigo: "754624th", idX3D: "", nome: "JOELHO CANO", preco: 5.92, formula: "Q * $", unidade: "UNID" }
     ],
     "LONAS E ADESIVOS": [
         { codigo: "92406", idX3D: "1154", nome: "ABRAÇADEIRA 250MM", preco: 1.00, formula: "(((C[20703] + A[20703])*2 + (C[78473] + A[78473])*2) * 4) * Q * $", unidade: "UNID" }, //mudar formula para 'comprimento do produto de codigo 934 * Q * $' mude a propriedade deste produto de forma que os dados vindo do produto de codigo 934 n possão ser alterados na pagina executavel
