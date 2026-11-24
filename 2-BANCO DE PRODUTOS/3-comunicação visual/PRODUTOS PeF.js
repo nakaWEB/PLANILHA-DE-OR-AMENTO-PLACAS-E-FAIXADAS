@@ -349,6 +349,8 @@ let catalogoProdutos = {
         { codigo: "55033", idX3D: "2600997", nome: "COLA DE CONTATO", preco: 30.00, formula: "Q * $", unidade: "LT" },
         { codigo: "45947", idX3D: "2600745", nome: "COLA INSTANTÂNEA TEKBOND", preco: 35.00, formula: "Q * $", unidade: "UNID" },
         { codigo: "47113", idX3D: "", nome: "COMPENSADO NAVAL 15MM", preco: 155.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "53457txd", idX3D: "", nome: "COMPENSADO NAVAL 6MM", preco: 80.00, formula: "C * A * Q * $", unidade: "M²" },
+        { codigo: "53457td", idX3D: "", nome: "COMPENSADO MARFIN 4MM", preco: 60.00, formula: "C * A * Q * $", unidade: "M²" },
         { codigo: "86433", idX3D: "2601121", nome: "CORREDIÇA 200MM", preco: 22.00, formula: "Q * $", unidade: "UNID" },
         { codigo: "77001", idX3D: "43595", nome: "CORREDIÇA 300MM", preco: 29.00, formula: "Q * $", unidade: "UNID" },
         { codigo: "31851", idX3D: "2601093", nome: "CORREDIÇA 350MM", preco: 45.00, formula: "Q * $", unidade: "UNID" },
